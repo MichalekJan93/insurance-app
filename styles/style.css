@@ -1,0 +1,1993 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+}
+
+/* SCROLL BARCS */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+dialog::-webkit-scrollbar-track {
+    margin: 15px;
+}
+
+
+/* ROOT COLORS */
+
+:root{
+    --main-color: #126FB5;
+    --background-color: #ffff;
+    --button-color: #3eaf95;
+    --edit-color: #e3854f;
+    --error-color: #FF5436;
+    --font-header: #126FB5;
+    --hover-color: #f1f1ff;
+    --hover-button: #3eb498;
+}
+/* Dark mode */
+.dark-theme{
+    --main-color: #4ECBFB;
+    --background-color: #014A7F;
+    --button-color: #74FFE0;
+    --edit-color: #f9ac7ef8;
+    --error-color: #FE8975;
+}
+
+dialog::backdrop{
+    background-color: #0c0c0c74;
+}
+
+body{
+    background-color: var(--hover-color);
+    overflow-x: hidden;
+}
+
+header{
+    background-color: var(--background-color);
+    margin: 0.4rem;
+    border-radius: 0.8rem;
+    transition: visbility 2s ease;
+    position: relative;
+}
+
+header .menu-header{
+    transition: opacity 200ms ease-out;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+header .menu-header.show{
+    opacity: 1;
+    height: auto;
+    animation: growDown 300ms ease-in-out forwards;
+    transform-origin: top center;
+    -webkit-animation: growDown 300ms ease-in-out forwards;
+}
+
+@keyframes growDown {
+    0% {
+        transform: scaleY(0)
+    }
+    80% {
+        transform: scaleY(1.1)
+    }
+    100% {
+        transform: scaleY(1)
+    }
+}
+
+header img{
+    width: 1.4rem;
+}
+
+header .logo{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    cursor: default;
+}
+
+header p{
+    font-weight: bold;
+}
+
+header p span{
+    color:var(--main-color);
+}
+
+header .logo img{
+    width: 3rem;
+}
+
+header .logo p{
+    line-height: 3;
+    padding-left: 0.5rem;
+}
+
+.menu-header .menu{
+    list-style: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    padding-left: 55px;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 20px;
+    background-position-x: 20px;
+    transition: 100ms ease-in;
+}
+
+.menu-header .menu:hover{
+   background-color: var(--hover-color);
+}
+
+
+.menu-header .menu img{
+    padding-right: 0.5rem;
+}
+
+.menu-header .menu.mobile-login{
+    margin-bottom: 0.5rem;
+}
+
+header .menu-header .menu:nth-child(1){
+    background-image: url("../img/dashboard-icon.png");
+}
+
+header .menu-header .menu:nth-child(2){
+    background-image: url("../img/user-icon.png");
+}
+
+header .menu-header .menu:nth-child(3){
+    background-image: url("../img/insurance-icon.png");
+}
+
+header .menu-header .menu:nth-child(4){
+    background-image: url("../img/info-icon.png");
+}
+
+header .menu-header .menu:nth-child(5){
+    background-image: url("../img/login-icon.png");
+}
+
+header .desktop-login{
+    width: 1.6rem;
+    height: 1.6rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-image: url('../img/login-icon-desktop.png');
+    background-size: 23px;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 200ms ease-in;
+    position: absolute;
+    top: 26px;
+    right: 20px;
+}
+
+header .desktop-login:hover{
+    background-image: url('../img/login-icon.png');
+}
+
+header .hamburger-menu{
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    cursor: pointer;
+}
+
+header .logout{
+    width: 1.8rem;
+    height: 1.8rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-image: url('../img/logout-icon-hover.png');
+    background-size: 26px;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 200ms ease-in;
+    position: absolute;
+    top: 26px;
+    right: 15px;
+    cursor: pointer;
+}
+
+header .logout:hover{
+    background-image: url('../img/logout-icon.png');
+}
+
+
+section.Info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+section.Info img{
+    max-width: 300px;
+    margin-top: 2rem;
+}
+
+section{
+    position: relative;
+    display: grid;
+    grid-template-columns:repeat(10, 1fr);
+    grid-template-rows:repeat(9, 1fr);
+    gap: 1rem;
+    height: 580px;
+    background-color: white;
+    border-radius: 1rem;
+    margin: 0.4rem;
+    animation: growDownSection 300ms ease;
+    padding: 1rem;
+    -webkit-animation: growDownSection 300ms ease;
+}
+
+section.Home{
+    display: block;
+    height: auto;
+    min-height: 650px;
+
+}
+
+section.Home .person-name{
+    margin-top: 1rem;
+}
+
+.section.Home .person-data p{
+    font-size: 0.8rem;
+    font-weight:400;
+    margin-top: 1rem;
+    margin-bottom: 10px;
+}
+
+@keyframes growDownSection {
+    0% {
+        transform: scaleY(0)
+    }
+    100% {
+        transform: scaleY(1)
+    }
+}
+
+section .section-name{
+    color: rgb(192, 192, 192);
+    grid-column: 1/6;
+    grid-row: 1/2;
+    font-size: 1.2rem;
+    cursor: default;
+}
+
+section .addButton, section .addButton-dialog{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--font-header);
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -25px;
+    cursor: pointer;
+    transition: 300ms ease;
+}
+
+dialog .addButton-dialog{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--font-header);
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -25px;
+    cursor: pointer;
+    transition: 300ms ease;
+}
+
+section .addButton p, dialog .addButton-dialog p, section .addButton-dialog p{
+    text-align: center;
+    line-height: 3.3;
+    color: white;
+    padding-left: 30px;
+    opacity: 0;
+    visibility: hidden;
+}
+
+dialog .addButton p{
+    text-align: center;
+    line-height: 3;
+    color: white;
+    padding-left: 30px;
+    opacity: 0;
+    visibility: hidden;
+}
+
+section .addButton::after, dialog .addButton-dialog::after, section .addButton-dialog::after{
+    content: "";
+    background-color: white;
+    width: 5px;
+    height: 20px;
+    border-radius: 2px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -10px;
+    margin-left: -2.5px;
+}
+
+section .addButton::before, dialog .addButton-dialog::before, section .addButton-dialog::before{
+    content: "";
+    background-color: white;
+    width: 20px;
+    height: 5px;
+    border-radius: 2px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -2.5px;
+    margin-left: -10px;
+}
+
+.filter{
+    grid-column: 1/11;
+    grid-row: 2/3;
+    display: grid;
+    grid-template-columns:repeat(8, 1fr);
+    grid-template-rows:repeat(1, 1fr);
+    gap: 1rem;
+}
+
+.filter .filter-input{
+    width: 100%;
+    background-color: var(--hover-color);
+    border: 1px solid #e2e2ff;
+    border-radius: 5px;
+    padding-left: 3px;
+    font-size: 0.8rem;
+    height: 2rem;
+    outline: none;
+    transition: 200ms ease-in-out;
+}
+
+.filter input[type=text]:focus{
+    border-width: 3px;
+}
+
+.filter .filter-input:nth-child(1){
+    grid-column: 1/3;
+}
+
+.filter .filter-input:nth-child(2){
+    grid-column: 3/5;
+}
+
+.filter .filter-input:nth-child(3){
+    grid-column: 5/7;
+}
+
+.information-box, .information-box-dialog{
+    width: 100%;
+    opacity: 0;
+    background-color: var(--hover-color);
+    border-radius: 8px;
+    grid-column: 1/11;
+    display: grid;
+    grid-template-columns:repeat(8, 1fr);
+    grid-template-rows:repeat(1, 1fr);
+    gap: 1rem;
+    align-items: center;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    animation: infoBox 1s infinite;
+    -webkit-animation: infoBox 1s forwards;
+}
+
+@keyframes infoBox {
+    0% {opacity: 0%;}
+    100% {opacity: 100%}    
+}
+
+.information-box .information-box-one, .information-box-dialog .information-box-one, .information-box-one-insurance{
+    padding-left: 0.5rem;
+    grid-column: 1/3;
+    display: flex;
+    flex-direction: column;
+}
+
+.information-box .information-box-one::before, .information-box-dialog .information-box-one::before{
+    content: "Jméno";
+    color: rgb(192, 192, 192);
+}
+
+.information-box-one-insurance::before{
+    content: "Pojistník";
+    color: rgb(192, 192, 192);
+}
+
+.information-box .information-box-two, .information-box-dialog .information-box-two, .information-box-two-insurance{
+    grid-column: 3/5;
+    display: flex;
+    flex-direction: column;
+}
+
+.information-box .information-box-two::before, .information-box-dialog .information-box-two::before{
+    content: "Příjmení";
+    color: rgb(192, 192, 192);
+}
+
+.information-box-two-insurance::before{
+    content: "Typ";
+    color: rgb(192, 192, 192);
+}
+
+.information-box .information-box-three, .information-box-dialog .information-box-three, .information-box-three-insurance{
+    grid-column: 5/7;
+    display: flex;
+    flex-direction: column;
+}
+
+.information-box .information-box-three::before, .information-box-dialog .information-box-three::before{
+    content: "PSČ";
+    color: rgb(192, 192, 192);
+}
+
+.information-box-three-insurance::before{
+    content: "Platné do";
+    color: rgb(192, 192, 192);
+}
+
+.information-box .information-btns, .information-box-dialog .information-btns{
+    height: 100%;
+    grid-column: 7/9;
+    display: flex;
+    gap: 0.7rem;
+    justify-content: right;
+    align-items: center;
+    padding-right: 1rem;
+}
+
+.information-box .btn-information, .information-box .btn-information-dialog, .information-box-dialog .btn-information-dialog{
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    grid-column: 1/2;
+    cursor: pointer;
+    position: relative;
+    transition: 200ms ease-in-out;
+}
+
+
+.information-box .btn-information:hover, .information-box .btn-information-dialog:hover, .information-box-dialog .btn-information-dialog:hover{
+    transform: scale(1.5);
+}
+
+.information-box .btn-information:after, .information-box .btn-information-dialog:after,.information-box-dialog .btn-information-dialog:after{
+    content: "";
+    background-color: white;
+    width: 4px;
+    height: 4px;
+    border-radius: 2px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -8px;
+    margin-left: -2px;
+}
+
+.information-box .btn-information:before, .information-box .btn-information-dialog:before, .information-box-dialog .btn-information-dialog:before{
+    content: "";
+    background-color: white;
+    width: 4px;
+    height: 10px;
+    border-radius: 2px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -3px;
+    margin-left: -2px;
+}
+
+.information-box .btn-update, .information-box .btn-update-dialog, .information-box-dialog .btn-update-dialog{
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    background-color: var(--edit-color);
+    grid-column: 2/3;
+    cursor: pointer;
+    position: relative;
+    transition: 200ms ease-in-out;
+}
+
+.information-box .btn-update:hover, .information-box .btn-update-dialog:hover,.information-box-dialog .btn-update-dialog:hover{
+    transform: scale(1.5);
+}
+
+.information-box .btn-update:after, .information-box .btn-update-dialog:after, .information-box-dialog .btn-update-dialog:after{
+    content: "";
+    background-color: white;
+    width: 12px;
+    height: 3px;
+    border-radius: 2px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -4px;
+    margin-left: -6px;
+}
+
+.information-box .btn-update:before, .information-box .btn-update-dialog:before, .information-box-dialog .btn-update-dialog:before{
+    content: "";
+    background-color: white;
+    width: 8px;
+    height: 3px;
+    border-radius: 2px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: 2px;
+    margin-left: -6px;
+}
+
+.information-box .btn-delete, .information-box .btn-delete-dialog, .information-box-dialog .btn-delete-dialog{
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    background-color: var(--error-color);
+    grid-column: 3/4;
+    cursor: pointer;
+    position: relative;
+    transition: 200ms ease-in-out;
+}
+
+.information-box .btn-delete:hover, .information-box .btn-delete-dialog:hover, .information-box-dialog .btn-delete-dialog:hover{
+    transform: scale(1.5);
+}
+
+.information-box .btn-delete:after, .information-box .btn-delete-dialog:after, .information-box-dialog .btn-delete-dialog:after{
+    content: "";
+    background-color: white;
+    width: 13px;
+    height: 3px;
+    border-radius: 2px;
+    position: absolute;
+    transform: rotate(45deg);
+    left: 50%;
+    top: 50%;
+    margin-top: -1.5px;
+    margin-left: -6.5px;
+}
+
+.information-box .btn-delete:before, .information-box .btn-delete-dialog:before, .information-box-dialog .btn-delete-dialog:before{
+    content: "";
+    background-color: white;
+    width: 13px;
+    height: 3px;
+    border-radius: 2px;
+    position: absolute;
+    transform: rotate(135deg);
+    left: 50%;
+    top: 50%;
+    margin-top: -1.5px;
+    margin-left: -6.5px;
+}
+
+.control, .control-dialog, section.Home .control-dialog{
+    bottom: 10px;
+    display: flex;
+    grid-column: 1/11;
+    justify-content: end;
+    position: absolute;
+    right: 0px;
+    bottom: 45px;
+}
+
+.control-dialog, section.Home .control-dialog{
+    right: 19px;
+}
+
+dialog .control{
+    bottom: 66px;
+    right: 20px;
+}
+
+.control .control-left, .control-left-dialog{
+    width: 25px;
+    height: 25px;
+    background-color: var(--hover-color);
+    position: relative;
+    border-radius: 1rem;
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.control .control-left:after, .control-left-dialog:after{
+    content: "";
+    position: absolute;
+    background-color: rgb(192, 192, 192);
+    border-radius: 10px;
+    width: 4px;
+    height: 12.5px;
+    transform: rotate(45deg);
+    left:  10.5px;
+    top: 3.25px;
+}
+
+.control .control-left:before, .control-left-dialog:before{
+    content: "";
+    position: absolute;
+    background-color: rgb(192, 192, 192);
+    border-radius: 10px;
+    width: 4px;
+    height: 12.5px;
+    transform: rotate(135deg);
+    left: 10.5px;
+    top: 10.5px;
+}
+
+.control .control-left:hover.control-left:after, .control-lef-dialog:hover.control-left-dialog:after{
+    background-color: var(--main-color);
+}
+
+.control .control-left:hover.control-left:before, .control-lef-dialog:hover.control-left-dialog:before{
+    background-color: var(--main-color);
+}
+
+.control .page-number, .page-number {
+    width: 18px;
+    height: 25px;
+    text-align: center;
+    margin: 0 0.3rem;
+    line-height: 27px;
+}
+
+dialog .page-number{
+    font-size: 1rem;
+}
+
+.control .control-right, .control-right-dialog{
+    width: 25px;
+    height: 25px;
+    background-color: var(--hover-color);
+    position: relative;
+    border-radius: 1rem;
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.control .control-right:after, .control-right-dialog:after{
+    content: "";
+    position: absolute;
+    background-color: rgb(192, 192, 192);
+    border-radius: 10px;
+    width: 4px;
+    height: 12.5px;
+    transform: rotate(45deg);
+    left:  12.5px;
+    top:  10.5px;
+}
+
+.control .control-right:before, .control-right-dialog:before{
+    content: "";
+    position: absolute;
+    background-color: rgb(192, 192, 192);
+    border-radius: 10px;
+    width: 4px;
+    height: 12.5px;
+    transform: rotate(135deg);
+    left: 12.5px;
+    top: 3.5px;
+}
+
+.control .control-right:hover.control-right:after, .control-right-control:hover.control-right-control:after{
+    background-color: var(--main-color);
+}
+
+.control .control-right:hover.control-right:before, .control-right-control:hover.control-right-control:before{
+    background-color: var(--main-color);
+}
+
+dialog{
+    width: 90%;
+    max-width: 500px;
+    background-color: white;
+    z-index: 10;
+    border-radius: 1rem;
+    margin: 2rem auto 0 auto;
+    font-size: 0.8rem;
+    border: none;
+    position: relative;
+    animation: growDown 300ms ease-in-out forwards;
+    -webkit-animation: growDown 300ms ease-in-out forwards;
+}
+
+dialog.dialog-user, dialog .dialog-insurance{
+    padding: 1rem;
+}
+
+dialog .dialog-img{
+    display: none;
+}
+
+dialog .dialog-title{
+    color: rgb(192, 192, 192);
+    text-align: left;
+}
+
+dialog h2{
+    color: white;
+    font-size: 1.2rem;
+    font-weight:400;
+    text-align: center;
+    margin: 1rem 0 0 0;
+}
+
+dialog .dialog-off{
+    width: 25px;
+    height: 25px;
+    background-image: url('../img/cross.png');
+    background-size: 25px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    transition: 200ms ease-out;
+}
+
+dialog .dialog-off:hover{
+    background-image: url('../img/cross-hover.png');
+}
+
+dialog p{
+    font-size: 1.1rem;
+    font-weight:400;
+    margin-top: 1rem;
+    margin-bottom: 10px;
+}
+
+form{
+    margin: 0 auto;
+    width: 200px;
+}
+
+.select-person, .select-insurance{
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    cursor: pointer;
+    height: 40px;
+    margin: 0 auto;
+    padding-left: 18px;
+    border: 1px solid #e2e2ff;
+    border-radius: 5px;
+    background-color: var(--hover-color);
+    padding: 0.3rem 0 0.3rem 0.5rem;
+}
+
+.select-insurance{
+    font-size: 0.8rem;
+    width: 90%;
+    padding: 0.3rem 0 0.3rem 0.5rem;
+    height: 32px;
+    margin: 0;
+    position: relative;
+}
+
+.select-person .selected-person, .select-insurance .selected-insurance{
+    width: 90%;
+    height: auto;
+}
+
+.select-person img{
+    width: 20px;
+    height: 20px;
+    transition: 300ms ease-in;
+    -webkit-transition: 300ms ease-in;
+    -moz-transition: 300ms ease-in;
+    -ms-transition: 300ms ease-in;
+    -o-transition: 300ms ease-in;
+}
+
+.select-insurance img{
+    width: 15px;
+    height: 15px;
+    transition: 300ms ease-in;
+    -webkit-transition: 300ms ease-in;
+    -moz-transition: 300ms ease-in;
+    -ms-transition: 300ms ease-in;
+    -o-transition: 300ms ease-in;
+}
+
+.selected-box .select-persons{
+    width: 92%;
+    height: auto;
+    max-height: 200px;
+    border: 1px solid #e2e2ff;
+    border-radius: 5px;
+    background-color: var(--hover-color);
+    padding: 0.3rem 0.3rem 0.3rem 0.5rem;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    cursor: pointer;
+    overflow: auto;
+}
+
+.select-insurance .select-insurances{
+    width: 100%;
+    height: auto;
+    border: 1px solid #e2e2ff;
+    border-radius: 5px;
+    background-color: var(--hover-color);
+    padding: 0.3rem 0.3rem 0.3rem 0.5rem;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    cursor: pointer;
+    overflow: auto;
+    bottom: -118px;
+    left: 0;
+}
+
+.select-person:hover.select-persons, .select-insurance:hover.select-insurances{
+    visibility: visible;
+    opacity: 1;
+}
+
+.selected-box .select-persons > *, .select-insurance .select-insurances > *{
+    height: 35px;
+    line-height: 35px;
+    border-bottom: 1px solid;
+    border-color: #e2e2ff;
+    font-size: 0.9rem;
+    transition: 200ms ease-in-out;
+}
+
+.select-insurance .select-insurances > *{
+    font-size: 0.8rem;
+}
+
+.selected-box .select-persons > *:hover, .select-insurance .select-insurances > *:hover{
+    border-color: var(--main-color);
+}
+
+dialog form input[type=text]{
+    border: 1px solid #e2e2ff;
+    border-radius: 5px;
+    background-color: var(--hover-color);
+    display: block;
+    padding: 0.3rem 0 0.3rem 0.5rem;
+    width: 90%;
+    margin: 0 0 10px 0;
+    outline: none;
+}
+
+dialog form input[type=number]{
+    border: 1px solid #e2e2ff;
+    border-radius: 5px;
+    background-color: var(--hover-color);
+    display: block;
+    padding: 0.3rem 0 0.3rem 0.5rem;
+    width: 90%;
+    margin: 0 0 10px 0;
+    outline: none;
+    appearance: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+dialog form input[type=date]{
+    border: 1px solid #e2e2ff;
+    border-radius: 5px;
+    background-color: var(--hover-color);
+    padding: 0.3rem 0 0.3rem 0.5rem;
+    outline: none;
+    margin: 5px 0 10px 0;
+    width: 90%;
+}
+
+dialog form input[type=password]{
+    border: 1px solid #e2e2ff;
+    border-radius: 5px;
+    background-color: var(--hover-color);
+    display: block;
+    padding: 0.3rem 0 0.3rem 0.5rem;
+    width: 90%;
+    margin: 5px 0 10px 0;
+    outline: none;
+}
+
+dialog form input[type=button]{
+    display: block;
+    margin: 0 56px 0 auto;
+    background-color: var(--button-color);
+    border: none;
+    border-radius: 5px;
+    padding: 0.3rem 1.3rem;
+    cursor: pointer;
+    transition: 200ms ease-out;
+    color: white;
+}
+
+dialog form input[type=button]:hover, .selected-button:hover{
+    background-color: var(--hover-button);
+}
+
+.selected-button{
+    display: block;
+    border: none;
+    border-radius: 5px;
+    padding: 0.3rem 1.3rem;
+    margin: 2rem auto 1rem auto;
+    transition: 200ms ease-out;
+}
+
+.selected-button.enabled{
+    cursor: pointer;
+    background-color: var(--button-color);
+}
+
+.selected-button.enabled:hover{
+    background-color: var(--hover-button);
+}
+
+.selected-button.disabled {
+    background-color: var(--hover-color);
+}
+
+.selected-button.disabled:hover {
+    background-color: var(--hover-color);
+}
+
+dialog form .registration p{
+    font-size: 0.9rem;
+    color: black;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+dialog form .registration:hover{
+    text-decoration: underline;
+}
+
+dialog .login{
+    display: flex;
+    flex-direction: column;
+}
+
+dialog .login .login-img{
+    height: 200px;
+    width: 100%;
+    background-image: url('../img/login.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 350px;
+}
+
+dialog .login .login-img img{
+    display: none;
+}
+
+dialog .login-form{
+    background-color: var(--main-color);
+    padding-bottom: 1rem;
+}
+
+dialog .login-form h2{
+    text-align: center;
+    margin: 1rem 0 0 0;
+}
+
+dialog .login-form .register-admin{
+    display: block;
+    text-align: center;
+    margin-right: 170px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    color: white;
+}
+
+dialog .login-form .register-admin:hover{
+    text-decoration: underline;
+}
+
+dialog .login-form .register-password-info{
+    color: white;
+    display: block;
+    margin-right: 20px;
+    font-size: 0.7rem;
+    cursor: default;
+}
+
+dialog .login .register-img{
+    height: 200px;
+    width: 100%;
+    background-image: url('../img/register.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 350px;
+}
+
+dialog.infromation-person-dialog{
+    padding: 1rem;
+    height: 700px;
+    overflow: unset;
+}
+
+.person-address-first-paragraph{
+    background-image: url('../img/birthdate.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    float: left;
+}
+
+.person-address-second-paragraph{
+    background-image: url('../img/address.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    float: left;
+}
+
+.personContactFirstParagraph{
+    background-image: url('../img/phone.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    float: left;
+}
+
+.personContactSecondParagraph{
+    background-image: url('../img/email.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+}
+
+.person-name{
+    font-size: 2rem;
+    color: #000;
+}
+
+.person-data{
+    display: flex;
+    gap: 1rem;
+}
+
+.person-address, .person-contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.person-address > *, .person-contact > *{
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.person-insurances{
+    width: 100%;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 40px 0;
+    overflow-y: scroll;
+}
+
+.person-insurances p {
+    font-size: 1.5rem;
+    color: rgb(192, 192, 192);
+}
+
+.person-insurances .information-box-dialog{
+    height: 100%;
+    grid-column: 1/12;
+    width: 1360px;
+}
+
+.information-box-dialog .information-box-one{
+    grid-column: 1/2;
+}
+
+.information-box-dialog .information-box-one:before{
+    content: "Typ pojištění";
+    color: rgb(192, 192, 192);
+}
+
+.information-box-dialog .information-box-two{
+    grid-column: 2/4;
+}
+.information-box-dialog .information-box-two:before{
+    content: "Objekt";
+    color: rgb(192, 192, 192);
+}
+
+.information-box-dialog .information-box-three{
+    grid-column: 4/5;
+}
+
+.information-box-dialog .information-box-three:before{
+    content: "Částka";
+    color: rgb(192, 192, 192);
+}
+
+.information-box-dialog .information-box-four{
+    grid-column: 5/6;
+    display: flex;
+    flex-direction: column;
+}
+
+.information-box-dialog .information-box-four:before{
+    content: "Od";
+    color: rgb(192, 192, 192);
+}
+
+.information-box-dialog .information-box-five{
+    grid-column: 6/7;
+    display: flex;
+    flex-direction: column;
+}
+
+.information-box-dialog .information-box-five:before{
+    content: "Do";
+    color: rgb(192, 192, 192);
+}
+
+.information-box-dialog .information-box-six{
+    grid-column: 7/8;
+    display: flex;
+    flex-direction: column;
+}
+
+.information-box-dialog .information-box-six:before{
+    content: "Aktivní";
+    color: rgb(192, 192, 192);
+}
+
+.information-box-dialog .information-btns{
+    grid-column: 8/12;
+}
+
+.information-box-dialog .information-box-six .insurance-status{
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin-left: 15px;
+    margin-top: 3px;
+    margin-bottom: 4px;
+}
+
+
+.information-box-dialog .information-box-six .insurance-status.active{
+    background-color: var(--button-color);
+    -webkit-box-shadow: 0px 0px 7px 3px rgb(79 227 193 / 63%);
+    -moz-box-shadow: 0px 0px 7px 3px rgb(79 227 193 / 63%);
+    box-shadow: 0px 0px 7px 3px rgb(79 227 193 / 63%);
+}
+
+.information-box-dialog .information-box-six .insurance-status.inactive{
+    background-color: var(--error-color);
+    -webkit-box-shadow: 0px 0px 7px 3px   rgba(255,84,54,0.63);
+    -moz-box-shadow: 0px 0px 7px 3px  rgba(255,84,54,0.63);
+    box-shadow: 0px 0px 7px 3px  rgba(255,84,54,0.63);
+}
+
+.error-message{
+    font-size: 0.8rem;
+    color: var(--error-color);
+    background: #ffbdbd;
+    padding: 0.2rem 0.4rem;
+    border-radius: 5px;
+    visibility: hidden;
+    text-align: center;
+    max-width: 90%;
+}
+
+.message-box{
+    max-width: auto;
+    height: auto;
+    background-color: var(--button-color);
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 0px;
+    text-align: center;
+    z-index: 9999 !important;
+    -webkit-box-shadow: 0px 0px 3px -1px rgba(79,79,79,1);
+    -moz-box-shadow: 0px 0px 3px -1px rgba(79,79,79,1);
+    box-shadow: 0px 0px 3px -1px rgba(79,79,79,1);
+    animation: grow-and-shrink 2000ms;
+}
+
+.message-box .message-first p{
+    color: white;
+    text-align: center;
+}
+
+@keyframes grow-and-shrink {
+    0% {
+        transform: translateY(-100%);
+    }
+    20% {
+        transform: translateY(0%);
+    }
+    90%{
+        transform: translateY(0%);
+    }
+    100%{
+        transform: translateY(-100%);
+    }
+}
+
+.selected-box{
+    margin: 2rem auto 0 auto;
+    width: 400px;
+    padding: 2rem 1rem;
+    overflow: initial;
+}
+
+section .main-box{
+    position: relative;
+}
+
+section .main-box .main-box-text h1{
+    font-size: 2.3rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+section .main-box .main-box-text p{
+    font-size: 1.2rem;
+    margin: 1rem 0;
+}
+
+section .main-box h1 span{
+    color: var(--font-header);
+}
+
+section .main-box .main-box-text .phone-call{
+    display: none;
+}
+
+section .main-box .main-box-text .phone-call:hover{
+    background-color: var(--button-color);
+    background-image: url('../img/phone-call-hover.png');
+    color: white;
+}
+
+section .main-box .main-box-img{
+    width: 100%;
+    max-width: 1000px;
+    position: relative;
+}
+
+section .main-box .main-box-img img{
+    width: 99%;
+    max-width: 1000px;
+}
+
+section .main-box .main-box-referenc{
+    border-radius: 10px;
+    position: absolute;
+    bottom: 30px;
+    left: -8px;
+    background-color: white;
+    padding: 1rem;
+    -webkit-box-shadow: 0px 0px 3px -1px rgba(79,79,79,1);
+    -moz-box-shadow: 0px 0px 3px -1px rgba(79,79,79,1);
+    box-shadow: 0px 0px 3px -1px rgba(79,79,79,1);
+}
+
+section .main-box .main-box-referenc p:nth-child(1){
+    font-weight: bold;
+    color: var(--font-header);
+}
+
+section .main-box .main-box-referenc .main-box-referenc-imgs{
+    margin-top: 5px;
+    display: flex;
+    gap: 1rem;
+}
+
+section .main-box .main-box-referenc .main-box-referenc-imgs .insurance-faces{
+    width: 30px;
+}
+
+section h2{
+    margin: 6rem 0 3rem 0;
+    text-align: center;
+    font-size: 1.7rem;
+}
+
+section .insurance-boxes{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex: 50%;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+section .insurance-boxes .insurance-boxes-box{
+    width: 47%;
+    height: 200px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    border-radius: 1rem;
+    cursor: pointer;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    -webkit-box-shadow: 0px 0px 3px -1px rgba(79,79,79,1);
+    -moz-box-shadow: 0px 0px 3px -1px rgba(79,79,79,1);
+    box-shadow: 0px 0px 3px -1px rgba(79,79,79,1);
+    background-size: 130%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 200ms ease-in;
+    -webkit-transition: 200ms ease-in;
+    -moz-transition: 200ms ease-in;
+    -ms-transition: 200ms ease-in;
+    -o-transition: 200ms ease-in;
+}
+
+section .insurance-boxes .insurance-boxes-box:hover{
+    -webkit-box-shadow: 0px 0px 5px -1px rgba(79,79,79,1);
+    -moz-box-shadow: 0px 0px 5px -1px rgba(79,79,79,1);
+    box-shadow: 0px 0px 5px -1px rgba(79,79,79,1);
+}
+
+section .insurance-boxes .insurance-boxes-box h3{
+    width: 100%;
+    background-color: #f1f1ff97;
+    text-align: center;
+    border-radius: 0 0 1rem 1rem;
+    -webkit-border-radius: 0 0 1rem 1rem;
+    -moz-border-radius: 0 0 1rem 1rem;
+    -ms-border-radius: 0 0 1rem 1rem;
+    -o-border-radius: 0 0 1rem 1rem;
+}
+
+section .insurance-boxes .insurance-boxes-box:nth-child(1){
+    background-image: url('../img/insurance-vehicel.jpg');
+}
+
+section .insurance-boxes .insurance-boxes-box:nth-child(2){
+    background-image: url('../img/insurance-travel.jpg');
+}
+
+section .insurance-boxes .insurance-boxes-box:nth-child(3){
+    background-image: url('../img/insurance-property.jpg');
+}
+
+section .insurance-boxes .insurance-boxes-box:nth-child(4){
+    background-image: url('../img/insurance-business.jpg');
+}
+
+section .insurance-boxes .insurance-boxes-box:hover{
+    transform: scale(1.1);
+}
+
+.subtitle{
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    color: rgb(192, 192, 192);;
+}
+
+.info-box{
+    color: rgb(192, 192, 192);
+    font-size: 0.9rem;
+    background-image: url('../img/info-icon-bottom.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 33rem;
+    left: 1rem;
+    background-color: white;
+    border-radius: 10px;
+    padding: 5px 10px 5px 30px;
+    background-position-y: 5px;
+    background-position-x: 5px;
+    cursor: pointer;
+    height: 30px;
+    margin-right: 1rem;
+}
+
+section.Home .info-box{
+    top: 38rem;
+}
+
+.info-box p{
+    display: none;
+}
+
+.info-box:hover{
+    height: auto;
+    -webkit-box-shadow: 0px 0px 3px -1px rgba(79,79,79,1);
+    -moz-box-shadow: 0px 0px 3px -1px rgba(79,79,79,1);
+    box-shadow: 0px 0px 3px -1px rgba(79,79,79,1);
+}
+
+.info-box:hover.info-box p{
+    display: block;
+}
+
+.person-data .person-address > *,
+.person-data .person-contact > *{
+    height: 20px;
+}
+
+.section.Home .overview-img{
+    display: none;
+}
+
+.section.Home .personContactSecondParagraph{
+    margin-bottom: 2rem;
+}
+
+.flex-wrapper {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .single-chart {
+    width: 48%;
+    justify-content: space-around ;
+    position: relative;
+    padding: 0.5rem 0;
+    background: #e2e2ff;
+    border-radius: 1rem;
+    animation: infoBox 1s infinite;
+    -webkit-animation: infoBox 1s forwards;
+  }
+
+  .single-chart  p{
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  
+  .circular-chart {
+    display: block;
+    margin: 10px auto;
+    max-width: 100%;
+    max-height: 150px;
+  }
+  
+  .circle-bg {
+    fill: none;
+    stroke: white;
+    stroke-width: 1.8;
+  }
+  
+  .circle {
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    animation: progress 1s ease-out forwards;
+  }
+  
+  @keyframes progress {
+    0% {
+      stroke-dasharray: 0 100;
+    }
+  }
+  
+  .circular-chart.red .circle {
+    stroke: var(--error-color);
+  }
+  
+  .circular-chart.green .circle {
+    stroke: var(--button-color);
+  }
+  
+  .circular-chart.blue .circle {
+    stroke: var(--font-header);
+  }
+  
+  .percentage {
+    fill: black;
+    font-size: 0.4rem;
+    text-anchor: middle;
+  }
+
+  .max-value{
+    position: absolute;
+    top: 40%;
+    left: 54%;
+    color: black;
+  }
+
+@media only screen and (min-width: 40em){
+    section .main-box .main-box-img{
+        background-position-y: -100px;
+    }
+}
+
+@media only screen and (min-width: 60em) {
+    .section.Home .box{
+        display: flex;
+        gap: 5px;
+        min-height: 420px;
+    }
+
+    .flex-wrapper{
+        flex: 1;
+    }
+
+    .section.Home .overview-img{
+        display: inline-block;
+        width: 32%;
+        background-image: url('../img/target-overview.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        animation: infoBox 1s infinite;
+        -webkit-animation: infoBox 1s forwards;
+        border-radius: 3rem;
+    }
+
+    .section.Home .person-data p{
+        font-size: 0.9rem;
+    }
+
+    .section.Home .information-box-dialog{
+        width: 100%;
+        min-width: 1360px;
+    }
+
+    section .main-box{
+        position: relative;
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
+        margin: 4rem auto;
+    }
+
+    section .main-box .main-box-img{
+        flex-grow: 2;
+        background-size: 100%;
+        max-width: 700px;
+        min-width: 500px;
+    }
+
+    section .main-box .main-box-text{
+        padding-left: 100px;
+    }
+
+    section .main-box .main-box-text h1{
+        font-size: 3rem;
+        text-align: left;
+        width: 600px;
+    }
+
+    section .main-box .main-box-referenc{
+        left: -20px;
+        bottom:15%;
+    }
+
+    section .insurance-boxes{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        flex: 100%;
+    }
+
+    section .insurance-boxes .insurance-boxes-box{
+        height: 280px;
+        width: 20%;
+    }
+
+    section .main-box .main-box-text p{
+        margin: 1rem 0 3rem 0;
+    }
+
+    section .insurance-boxes .insurance-boxes-box h3{
+        height: 50px;
+        padding-top: 20px;
+    }
+
+    section .main-box .main-box-text .phone-call{
+    display: inline;
+    margin: 1rem 0;
+    border: 1px solid var(--button-color);
+    background-color: white;
+    padding: 10px 10px 10px 40px;
+    color: var(--button-color);
+    text-decoration: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    cursor: pointer;
+    background-image: url('../img/phone-call.png');
+    background-size: 25px;
+    background-position: left;
+    background-position-x: 8px;
+    background-repeat: no-repeat;
+    transition: 300ms ease-in-out;
+    -webkit-transition: 300ms ease-in-out;
+    -moz-transition: 300ms ease-in-out;
+    -ms-transition: 300ms ease-in-out;
+    -o-transition: 300ms ease-in-out;
+}
+
+    header{
+        display: flex;
+        justify-content: space-between;
+        padding: 0 2rem;
+    }
+
+    header .menu-header, header .menu-header.show{
+        display: flex;
+        align-items: center;
+        opacity: 1;
+        height: auto;
+    }
+
+    .menu-header .menu{
+        height: 100%;
+        align-items: center;
+        display: flex;
+        padding-left: 40px;
+        background-size: 25px;
+        margin-left: 1rem;
+        background-position-x: 10px;
+    }
+
+    .menu-header .menu:hover{
+        transform: scale(1.1);    
+    }
+
+    .menu-header .menu-activate::after{
+        content: " ";
+        width: 100%;
+        height: 3px;
+        bottom: 10px;
+        left: 0px;
+        position: absolute;
+        background-color: var(--main-color);
+        border-radius: 0.6rem;
+    }
+
+    .menu-header .menu img{
+        height: 1.4rem;
+        width: auto;
+    }
+
+    .menu-header .mobile-login{
+        display: none;
+    }
+
+    header .desktop-login{
+        width: 1.6rem;
+        height: auto;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        background-image: url('../img/login-icon-desktop.png');
+        background-size: 23px;
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: 200ms ease-in;
+        position: initial;
+    }
+
+    header .logout{
+        width: 1.8rem;
+        height: 1.8rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        background-image: url('../img/logout-icon-hover.png');
+        background-size: 26px;
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: 200ms ease-in;
+        position: inherit;
+        right: 0px;
+    }
+
+    header .logout:hover{
+        background-image: url('../img/logout-icon.png');
+    }
+
+    header .hamburger-menu{
+        display: none;
+    }
+
+    .error-message{
+        max-width: 478px;
+    }
+
+    section{
+        height: 680px;
+        width: 1600px;
+    }
+
+    section .addButton, section .addButton-dialog{
+        display: block;
+        position: relative;
+        left: 30px;
+        grid-column: 1/2;
+        grid-row: 2/3;
+    }
+
+    dialog .addButton-dialog{
+        display: block;
+        position: relative;
+        left: 30px;
+    }
+
+    dialog .person-data{
+        margin-bottom: 50px;
+    }
+
+    section .addButton:hover, dialog .addButton-dialog:hover, section .addButton-dialog:hover{
+        border-radius: 10px;
+        width: 200px;
+    }
+
+    section .addButton:hover.addButton::after, dialog .addButton-dialog:hover.addButton-dialog::after, section .addButton-dialog:hover.addButton-dialog::after{
+        left: 14%;
+    }
+
+    section .addButton:hover.addButton::before, dialog .addButton-dialog:hover.addButton-dialog::before, section .addButton-dialog:hover.addButton-dialog::before{
+        left: 14%;
+    }
+
+    section .addButton:hover p, dialog .addButton-dialog:hover p, section .addButton-dialog:hover p{
+        transition-duration: 1s;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    section .filter{
+        grid-column: 1/11;
+        grid-row: 3/4;
+        display: grid;
+        grid-template-columns:repeat(8, 1fr);
+        grid-template-rows:repeat(1, 1fr);
+        gap: 1rem;
+    }
+
+    .information-box .information-btns, .information-box-dialog .information-btns{
+        grid-column: 8/9;
+    }
+
+    dialog{
+        max-width: 1400px;
+        min-height: 650px;
+    }
+
+    dialog .dialog-user.dialog, dialog .dialog-insurance.dialog{
+        display: flex;
+        align-items: center;
+    }
+
+    dialog .dialog-img{
+        margin: 0 auto;
+        display: inline;
+        max-width: auto;
+        height: 100%;
+    }
+
+    dialog .dialog-img img{
+        width: 95%;
+    }
+
+    form{
+        margin: 0 auto;
+        width: 545px;
+    }
+
+    dialog form .personal-information, dialog form .contact-information, dialog form .insured-info{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    dialog form .one-block{
+        display: flex;
+        flex-direction: column;
+        flex-basis: 45%;
+    }
+
+    dialog form .email{
+        display: block;
+    }
+
+    dialog form input[type=password]{
+        padding: 0.3rem 0 0.3rem 0.5rem;
+        margin: 5px 0 10px 0;
+        outline: none;
+    }
+
+    dialog form label:after{
+        content: ":";
+    }
+
+    dialog form input[type=button]{
+        position: absolute;
+        right: 85px;
+        margin-right: 0;
+    }
+
+    dialog form input[type=button]:hover, .selected-button:hover{
+        background-color: var(--hover-button);
+    }
+
+    .dialog-login .btn-send-data, .register-dialog .btn-send-data{
+        position: inherit;
+    }
+
+    dialog .login{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 90vh;
+        max-height: 900px;
+    }
+
+    dialog .login .login-img{
+        width: 100%;
+        background-size: 100%;
+        height: 100%;
+        flex: 50%;
+        border-radius: 1rem 0 0 1rem;
+        -webkit-border-radius: 1rem 0 0 1rem;
+        -moz-border-radius: 1rem 0 0 1rem;
+        -ms-border-radius: 1rem 0 0 1rem;
+        -o-border-radius: 1rem 0 0 1rem;
+    }
+
+    dialog .login-form{
+        flex: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0 1rem 1rem 0;
+        -webkit-border-radius: 0 1rem 1rem 0;
+        -moz-border-radius: 0 1rem 1rem 0;
+        -ms-border-radius: 0 1rem 1rem 0;
+        -o-border-radius: 0 1rem 1rem 0;
+    }
+
+    dialog .login-form h2{
+        margin: 1rem 0;
+    }
+
+    dialog .login-form form input[type='text'], dialog .login-form form input[type='password']{
+        width: 45%;
+        margin: 0 auto 1rem auto;
+        background-color: #ffff;
+    }
+
+    dialog .login-form form input[type='button']{
+        margin: 0 auto;
+    }
+
+    dialog .login-form .register-password-info{
+        text-align: center;
+    }
+
+    dialog .login .register-img{
+        width: 100%;
+        background-size: 100%;
+        height: 100%;
+        flex: 50%;
+        border-radius: 1rem 0 0 1rem;
+        -webkit-border-radius: 1rem 0 0 1rem;
+        -moz-border-radius: 1rem 0 0 1rem;
+        -ms-border-radius: 1rem 0 0 1rem;
+        -o-border-radius: 1rem 0 0 1rem;
+    }
+
+    .person-address > *, dialog .person-contact > *{
+        font-size: 0.9rem;
+        flex-direction: row;
+    }
+
+    .person-name{
+        font-size: 3rem;
+    }
+
+    dialog .control, .control-dialog{
+        bottom: 20px;
+    }
+
+    .person-insurances{
+        margin: 20px 0;
+    }
+
+    .selected-box .select-persons > *, .select-person{
+        font-size: 1rem;
+    }
+
+    .selected-box{
+        min-height: 10px;
+    }
+
+    .message-box{
+        z-index: 9999 !important;
+    }
+
+    section.Home{
+        min-height: 680px;
+    }
+
+    .info-box{
+        top: 40rem;
+    }
+
+    section.Home .info-box{
+        top: 40rem;
+    }
+
+    .max-value{
+        position: absolute;
+        top: 40%;
+        left: 52%;
+        color: black;
+    }
+
+    .max-value.height{
+        left: 53%;
+    }
+}
+
+@media only screen and (min-width: 90em) {
+
+    header{
+        margin: 0.4rem auto;
+        max-width: 100em;
+    }
+
+    section{
+        margin: 0 auto 2rem auto;
+    }
+}
