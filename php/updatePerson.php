@@ -20,7 +20,7 @@ if(isset($_POST['firstName'])){
     $NIP = $_POST['NIP'];
     $phone = $_POST['phone'];
     $email = $_POST['email'];
-    $sql = Databes::updateInsurer($firstName, $lastName, $birthdate, $city, $address, $NIP, $phone, $email, $id);
+    $sql = Databes::updateInsured($firstName, $lastName, $birthdate, $city, $address, $NIP, $phone, $email, $id);
     
     echo 'true';
 }
