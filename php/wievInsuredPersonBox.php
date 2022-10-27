@@ -1,12 +1,15 @@
 <?php
-    require "classes/databes.php";
+/**
+ * This file is used to log in the user
+ */
 
-    $con = Databes::connect('localhost','root',"",'insurance_app');
+require "classes/databes.php";
 
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $NIP = $_POST['NIP'];
+/* Connecting to a SQL database */
+$con = Databes::connect('localhost','root',"",'insurance_app');
 
-    $sql = Databes::fetchAllDataFromInsuredPersons($firstName, $lastName, $NIP);
+/* We find all insured persons according to the specified parameters */
+$sql = Databes::fetchAllDataFromInsuredPersons($_POST['firstName'], $_POST['lastName'], $_POST['NIP']);
 
-   echo json_encode($sql);
+/* Let's return the array with the insureds as JSON to the JS file from which the PHP file is called */
+echo json_encode($sql);

@@ -1,6 +1,7 @@
 <?php
 class Databes{
 
+    /* private variable for connection */
 	private static $connection;
 
     /**
