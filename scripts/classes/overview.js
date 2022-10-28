@@ -1,5 +1,9 @@
+/* Třída, který vytvoří uvodní stránku, pokud není uživatel přihlášen */
 export class Overview{
 
+    /**
+     * Metoda, pro vytvoření section a její DOM model s daty
+     */
     createDivs(){
         let divMainBox = document.createElement('div');
         let divMainBoxText = document.createElement('div');
