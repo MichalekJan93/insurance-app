@@ -31,7 +31,7 @@ export class UpdatePerson extends RegisterPerson {
     loadData() {
         let dataDTB = this.requestToServer(this.personID);
         dataDTB.then(function (result) {
-            result = JSON.parse(result);
+
             /* Naplneni inputu daty */
             document.querySelector('.personFirstName').value = result[0].firstName;
             document.querySelector('.personLastName').value = result[0].lastName;

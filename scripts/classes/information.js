@@ -103,8 +103,7 @@ export class Information {
         //Odešleme id pojištění do metody InsuranceFromDTB
         let dataDtb = this.InsuranceFromDTB(personID);
         dataDtb.then(function (result) {
-            // data z PHP souboru převedeme na JSON
-            result = JSON.parse(result);
+
             // Datum narození převedeme na český formát
             let birthdate = new Date(result[0].birthdate);
             let month = birthdate.getMonth() + 1;

@@ -98,8 +98,6 @@ export class InsuredPersonBox{
         let pageNumber = document.createElement('div');
 
         dataDtb.then(function (result) {
-            // data z PHP souboru převedeme na JSON
-            result = JSON.parse(result);
             // Délka pole z DTB
             let lengthDtb = result.length;
             //Maximální počet stránek

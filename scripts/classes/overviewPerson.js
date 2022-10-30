@@ -53,7 +53,6 @@ export class OverviewPerson extends Information{
     control(personID, actuallyPageNumber = 1) {
         let dataDtb = this.InsuranceFromDTB(personID);
         dataDtb.then(function (result) {
-            result = JSON.parse(result);
             let birthdate = new Date(result[0].birthdate);
             let month = birthdate.getMonth() + 1;
             birthdate = birthdate.getDate() + '.' + month + '.' + birthdate.getFullYear();

@@ -157,7 +157,7 @@ export class Login{
                         throw Error ('Neplatné přihlašovací údaje!');
                     }
                     //Převedeme odpověď ze serveru do JSON
-                    let user = JSON.parse(result);
+                    let user = result;
 
                     //Pokud se přihlásí pojistitel
                     if(user.login == true && user.role == 1){

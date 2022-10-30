@@ -393,16 +393,17 @@ export class CreateInsurance{
     control(personID){
         //Odešleme id pojištění do metody InsuranceFromDTB
         let dataDtb = this.InsuranceFromDTB(personID);
-        dataDtb.then(function (result) {
-            // data z PHP souboru převedeme na JSON
-            result = JSON.parse(result);
-            //Jmené vložíme do divu s třídou .personFirstName
-            let personFirstName = document.querySelector('.personFirstName');
-            personFirstName.setAttribute('value', result[0].firstName);
-            //Příjmeni vložíme do divu s třídou .personLastName
-            let personLastName = document.querySelector('.personLastName');
-            personLastName.setAttribute('value', result[0].lastName);
-        })
+        dataDtb
+            .then((result) => {
+                // data z PHP souboru převedeme na JSON
+                result = JSON.parse(result);
+                //Jmené vložíme do divu s třídou .personFirstName
+                let personFirstName = document.querySelector('.personFirstName');
+                personFirstName.setAttribute('value', result[0].firstName);
+                //Příjmeni vložíme do divu s třídou .personLastName
+                let personLastName = document.querySelector('.personLastName');
+                personLastName.setAttribute('value', result[0].lastName);
+            })
     }
 
     /**

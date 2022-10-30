@@ -86,7 +86,7 @@ export class SelectedPersonBox {
         let selectPersons = document.querySelector('.select-persons');
         selectPersons.innerHTML = '';
             let result = dataDtb.then(function (result) {
-            for(let onePerson of JSON.parse(result)){
+            for(let onePerson of result){
                 let onePersonDiv = document.createElement('div');
                 onePersonDiv.setAttribute('class', 'person user' + onePerson.id);
                 onePersonDiv.innerHTML = onePerson.firstName + ' ' + onePerson.lastName;

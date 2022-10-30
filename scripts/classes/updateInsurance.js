@@ -26,7 +26,6 @@ export class UpdateInsurance extends CreateInsurance{
     loadData() {
         let dataDTB = this.requestToServer(this.insuranceID);
         dataDTB.then(function (result) {
-            result = JSON.parse(result);
             /* Naplneni inputu daty */
             document.querySelector('.personFirstName').value = result[0].personName[0].firstName;
             document.querySelector('.personLastName').value = result[0].personName[0].lastName;
