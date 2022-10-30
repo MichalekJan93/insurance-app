@@ -16,9 +16,11 @@ export class PostAjax{
      */
     async result(object){
         let result;
-        let res = await this.ajax(object).then(function(a){
+        let res = await this.ajax(object)
+        .then(function(a){
             result = a;
         });
+
         return result;
     }
 
@@ -27,14 +29,10 @@ export class PostAjax{
      * @param {string} object - data, která odešleme pomocí Ajaxu do souboru php.
      * @returns url - funkce url, vrátí kompletní url adresu, která se odešle přes Ajax do souboru php.
      */
-    ajax(object){
+    async ajax(object){
         return new Promise ((resolve, reject) => {
-            let xhr = new XMLHttpRequest;
-            xhr.open(this.method, this.file);
-            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-            // Funkce pro vytvoření url adresy z objektu object, která se metodou post, odešle do php souboru
-            let url = function(object){
+            let url = (object) => {
                 let x = 0;
                 let url = '';
 
@@ -53,11 +51,24 @@ export class PostAjax{
                 return url;
             }
 
-            xhr.send(url(object));
+            /* Nastaveni pro fetch */
+            let fetchOptions = {
+                method: this.method,
+                body : url(object),
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            };
 
-            xhr.onload = function(){
-                resolve(this.responseText);
-            }
+            /* Nacteni dat z databaze pomoci metody fetch */
+            let response = fetch(this.file, fetchOptions);
+
+            response
+            .then((response) => response.json()).then((data) => resolve(data))
+            .catch((error) => reject('Error: Databaze nenalezena'));
         })
     }
 
