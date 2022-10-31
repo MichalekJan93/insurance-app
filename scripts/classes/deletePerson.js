@@ -50,7 +50,7 @@ export class DeletePerson{
                 contentBox.control();
                 // Vypíše potvrzovací zprávu uživateli
                 let message = new Message('Pojistník byl úspěšně odstraněn');
-            }  
+            }
         })
     }
 }

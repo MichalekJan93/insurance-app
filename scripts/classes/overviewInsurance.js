@@ -76,7 +76,6 @@ export class OverviewInsurance{
         let dataDtb = this.InsuranceFromDTB(insurerID);
         dataDtb
             .then(function (result) {
-                this.test();
                 // Jméno a přijmení přihlašeného pojistitele, vložíme do divu .person-name
                 document.querySelector('.person-name').innerHTML = `${result[0].firstName} ${result[0].lastName}`;
                 // Email pojistitele vložíme do divu .personContactSecondParagraph
