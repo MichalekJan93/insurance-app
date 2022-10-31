@@ -2,6 +2,7 @@
 /**
  * This file is used to register user (insurer)
  */
+
 require "classes/databes.php";
 
 /* Connecting to a SQL database */
