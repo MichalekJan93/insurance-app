@@ -1799,7 +1799,7 @@ section.Home .info-box{
 
     dialog{
         max-width: 1400px;
-        min-height: 650px;
+        height: 90vh;
     }
 
     dialog .dialog-user.dialog, dialog .dialog-insurance.dialog{
@@ -1868,7 +1868,6 @@ section.Home .info-box{
         flex-direction: row;
         align-items: center;
         height: 90vh;
-        max-height: 900px;
     }
 
     dialog .login .login-img{
