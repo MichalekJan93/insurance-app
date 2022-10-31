@@ -26,9 +26,9 @@ if(count($sql) == 0){
     $idInsurers = $dataFromInsurers[0]['id'];
     /* Sending data to the database */
     Databes::sendInsurersIntoDtbUsers($userEmail, $password, 1, $idInsurers, NULL);
-    echo true;
+    echo 'true';
 }
 else{
-    echo false;
+    echo 'false';
 }
 
