@@ -12,7 +12,7 @@ export class Menu{
         })
     }
     /* Vytvoří třidu menu-active po kliknutí na položku v headr menu*/
-    activeMenu(){        
+    activeMenu(){
         this.menu.forEach(element => {
             element.addEventListener('click', () =>{
                 this.resetActiveMenu();
@@ -27,22 +27,18 @@ export class Menu{
         })
     }
 
-
     /* Ovladani responsivního headr menu */
     showResponsiveMenu(){
         let menuHeader = document.querySelector('.menu-header');
-        this.menuIcon.addEventListener('click',function(){
-            /* Pokud bude velikost headeru mensi nez 960, tak scrollujeme menu */
-            if(document.querySelector('header').clientWidth < 960){
-                if(menuHeader.className === 'menu-header'){
-                    menuHeader.className += ' show';
-                }
-                else{
-                    menuHeader.className = 'menu-header';
-                }
+        /* Pokud bude velikost headeru mensi nez 960, tak scrollujeme menu */
+        if(document.querySelector('header').clientWidth < 960){
+            if(menuHeader.className === 'menu-header'){
+                menuHeader.className += ' show';
             }
-        })
-        return;
-    }    
+            else{
+                menuHeader.className = 'menu-header';
+            }
+        }
+    }
 }
 
