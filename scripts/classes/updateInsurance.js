@@ -54,7 +54,7 @@ export class UpdateInsurance extends CreateInsurance{
         if (type && amount && subject && validUntil) {
             let dataDTB = this.updateDataSend(id, type, amount, subject, validUntil);
             dataDTB.then(function (result) {
-                if (result == 'true') { // Pokud se registrace provede
+                if (result == true) { // Pokud se registrace provede
                     document.body.removeChild(document.querySelector('.insured-dialog'));
 
                     /* Pokud se budeme nachazet na strance pojisteni, tak odstranime stare boxy o pojisteni a nechame vepsat do stranky nove. */
@@ -79,7 +79,6 @@ export class UpdateInsurance extends CreateInsurance{
                         let contentBox = new Information();
                         contentBox.control(sessionStorage.getSessionData())
                     }
-                    
                     let message = new Message('Nová data byla uložena');
                 }
             })

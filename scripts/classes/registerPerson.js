@@ -411,7 +411,7 @@ export class RegisterPerson {
                     p.style.visibility = 'visible';
                 };
 
-                if (result == 'true') { // Pokud se registrace provede
+                if (result == true) { // Pokud se registrace provede
                     document.body.removeChild(document.querySelector('.dialog-user'));
                     /* Odstranime stare boxy o uzivatelich a nechame vepsat do stranky nove */
                     let infoBoxes = document.querySelectorAll('.information-box');

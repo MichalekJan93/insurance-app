@@ -37,7 +37,7 @@ export class DeletePerson{
         let dataDtb = this.InsuranceFromDTB(personID);
         dataDtb.then(function (result) {
             //Pokud nám z php souboru příjde true, jako že došlo k odstranění daného pojištěnce, tak provedeme následující příkazy.
-            if(result == 'true'){
+            if(result == true){
                 //Odstraníme všechny information-boxy s daty pojištěnců
                 let infoBoxes = document.querySelectorAll('.information-box');
                 for (let oneBox of infoBoxes) {

@@ -65,8 +65,7 @@ export class UpdatePerson extends RegisterPerson {
         if (firstName && lastName && birthdate && city && address && NIP && phone && email) {
             let dataDTB = this.updateDataSend(id, firstName, lastName, birthdate, city, address, NIP, phone, email);
             dataDTB.then(function (result) {
-
-                if (result == 'true') { // Pokud se registrace provede
+                if (result == true) { // Pokud se registrace provede
                     document.body.removeChild(document.querySelector('.dialog-user'));
                     /* Odstranime stare boxy o uzivatelich a nechame vepsat do stranky nove */
                     let infoBoxes = document.querySelectorAll('.information-box');
