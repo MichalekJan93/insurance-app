@@ -42,7 +42,7 @@ export class DeleteInsurance{
         //Odešleme id pojištění do metody InsuranceFromDTB
         let dataDtb = this.InsuranceFromDTB(insuranceID);
         dataDtb.then(function (result) {
-            if(result == 'true'){
+            if(result == true){
                 //Ověříme na jaké stránce se nachází uživatel
                 if(page){
                     //Odstraníme všechny information-boxy s daty o pojištění
@@ -57,6 +57,7 @@ export class DeleteInsurance{
                     contentBox.control()
                 }
                 else{
+                    console.log('aaa')
                     //Odstraníme všechny information-boxy s daty o pojištění
                     let infoBoxes = document.querySelectorAll('.information-box-dialog');
                     for (let oneBox of infoBoxes) {

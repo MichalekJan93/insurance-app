@@ -395,8 +395,6 @@ export class CreateInsurance{
         let dataDtb = this.InsuranceFromDTB(personID);
         dataDtb
             .then((result) => {
-                // data z PHP souboru převedeme na JSON
-                result = JSON.parse(result);
                 //Jmené vložíme do divu s třídou .personFirstName
                 let personFirstName = document.querySelector('.personFirstName');
                 personFirstName.setAttribute('value', result[0].firstName);

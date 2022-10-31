@@ -253,7 +253,7 @@ for(let i = 0; i < menu.length; i++){
             }
             else if(className == 'Pojištění'){
                 /* Vlozime novy nazev tridy pro <section> */
-                newBox.rename(className);
+                newBox.rename(className)
                 /* Vlozime divy do boxu section */
                 let contentBox = new InsurancePersonBox();
                 contentBox.insertData('Seznam pojištění');
@@ -519,6 +519,7 @@ function informationPersonBox(id, mutation = 0){
             let deleteBtns = document.querySelectorAll('.btn-delete-dialog');
             for(let i = 0; i < deleteBtns.length; i++){
                 deleteBtns[i].addEventListener('click', function(){
+                    console.log('click');
                     let insuranceID = this.parentElement.parentElement.getAttribute('id');
                     insuranceID = insuranceID.substring(9, insuranceID.length);
                     let deleteInsurance = new DeleteInsurance(insuranceID, 0);
