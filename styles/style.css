@@ -1259,6 +1259,7 @@ dialog.infromation-person-dialog{
 .selected-box{
     margin: 2rem auto 0 auto;
     width: 400px;
+    height: 220px;
     padding: 2rem 1rem;
     overflow: initial;
 }
