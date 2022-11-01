@@ -21,13 +21,12 @@ import { UpdateInsurance } from "./classes/updateInsurance.js";
 import { UpdatePerson } from "./classes/updatePerson.js";
 
 
-let className;
+let className, overview, header;
+
 let newBox = new Box();
-let header;
 let logIcon = new LogOut();
 let cookie = new Cookie();
 let sessionStorage = new SessionStorage();
-let overview;
 
 /**
  * Funkce pro vytvoreni uvodni stranky
@@ -35,54 +34,53 @@ let overview;
  * Pokud existuje jiz section s classou section, tak jen provedeme odstraneni vnitrnich dat z section. Toto provadime pri odhlaseni uzivatele.
  * Pokud uzivatel neni prihlaseni, tak stranku vytvorime pro neprihlaseneho uzivatele.
  */
-
-    export function controlLogin(){
-        if(cookie.checkCookie('login') && cookie.checkCookie('insurerID')){
-            newBox.remove();
-            className = 'Home';
-            header = new Header(1);
-            newBox.createBox(className);
-            logIcon.setIcon(1);
-            logOut();
-            /* Vytvoreni dat v sekci Home. Data pro prihlaseneho pojistitele. */
-            overview = new OverviewInsurance;
-            overview.createDivs();
-            overview.control(cookie.getCookie('insurerID'))
-        }
-        else if(cookie.checkCookie('login') && cookie.checkCookie('personID')){
-            newBox.remove();
-            className = 'Home';
-            header = new Header(0);
-            newBox.createBox(className);
-            logIcon.setIcon(1);
-            logOut();
-            className = 'Home';
-            /* Vytvoreni dat v sekci Home. Data pro prihlaseneho pojistnika. */
-            overview = new OverviewPerson;
-            overview.createDivs();
-            overview.control(cookie.getCookie('personID'))
-        }
-        else if(document.querySelector('.section')){
-            newBox.remove();
-            header = new Header(0);
-            logIcon.setIcon(0);
-            className = 'Home';
-            newBox.createBox(className);
-            /* Vytvoreni dat v sekci Home. Data pro neprihlaseneho pojistnika. */
-            overview = new Overview;
-            overview.createDivs();
-        }
-        else{
-            newBox.remove();
-            header = new Header(0);
-            className = 'Home';
-            newBox.createBox(className);
-            /* Vytvoreni dat v sekci Home. Data pro neprihlaseneho pojistnika. */
-            overview = new Overview;
-            overview = new Overview;
-            overview.createDivs();
-        }
+export function controlLogin(){
+    if(cookie.checkCookie('login') && cookie.checkCookie('insurerID')){
+        newBox.remove();
+        className = 'Home';
+        header = new Header(1);
+        newBox.createBox(className);
+        logIcon.setIcon(1);
+        logOut();
+        /* Vytvoreni dat v sekci Home. Data pro prihlaseneho pojistitele. */
+        overview = new OverviewInsurance;
+        overview.createDivs();
+        overview.control(cookie.getCookie('insurerID'))
     }
+    else if(cookie.checkCookie('login') && cookie.checkCookie('personID')){
+        newBox.remove();
+        className = 'Home';
+        header = new Header(0);
+        newBox.createBox(className);
+        logIcon.setIcon(1);
+        logOut();
+        className = 'Home';
+        /* Vytvoreni dat v sekci Home. Data pro prihlaseneho pojistnika. */
+        overview = new OverviewPerson;
+        overview.createDivs();
+        overview.control(cookie.getCookie('personID'))
+    }
+    else if(document.querySelector('.section')){
+        newBox.remove();
+        header = new Header(0);
+        logIcon.setIcon(0);
+        className = 'Home';
+        newBox.createBox(className);
+        /* Vytvoreni dat v sekci Home. Data pro neprihlaseneho pojistnika. */
+        overview = new Overview;
+        overview.createDivs();
+    }
+    else{
+        newBox.remove();
+        header = new Header(0);
+        className = 'Home';
+        newBox.createBox(className);
+        /* Vytvoreni dat v sekci Home. Data pro neprihlaseneho pojistnika. */
+        overview = new Overview;
+        overview = new Overview;
+        overview.createDivs();
+    }
+}
 
 /**
  * Funkce pro vymazani Cookies
@@ -638,7 +636,7 @@ let observer = new MutationObserver(MutationRecord =>{
             btnSendUpdateData.addEventListener('click', function(){
                 updateInsurance.updateData(insuranceID, updateInsurance.inputType(), updateInsurance.inputAmount(), updateInsurance.inputObject(), updateInsurance.inputValidUntil(), 1);
             })
-            
+
             deleteDialog(updateInsurance, 'insured-dialog', '.insured-information');
 
         })

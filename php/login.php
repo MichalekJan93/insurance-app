@@ -24,11 +24,11 @@ if($sql){
         echo json_encode($user);
     }
     else{
-        echo false;
+        echo 'false';
     };
 }
 else{
-    echo false;
+    echo 'false';
 }
 
 
