@@ -1,10 +1,10 @@
 /**
- * Třída, pomocí, které přidáme položky do menu v headru
+ * The class with which we add items to the menu in the header
  */
 export class Header {
+
     /**
-     * 
-     * @param {number} role - role uživatele. Odhlášený, přihlášený pojistitel, přihlášený pojištěnec
+     * @param {number} role User role. Deregistered, registered insurer, registered insured
      */
     constructor(role) {
         this.role = role;
@@ -13,15 +13,15 @@ export class Header {
     }
 
     /**
-     * Metoda, která přidá položky do menu
-     * @param {number} role 
+     * A method that adds items to the menu
+     * @param {number} role User role
      */
     menuHeader(role) {
-        //Názvy položek v menu
+        // Menu item names
         let menuItem = ['Home', 'Pojištěnci', 'Pojištění', 'Info'];
-        //Pokud je přihlášen pojistitel, přidáme do menu všechny položky z pole text
+        // If the insurer is logged in, we add all items from the text field to the menu
         if (role) {
-            // Cyklus pro vložení položek do menu
+            // Cycle for inserting menu items
             for (let i = 0; i < menuItem.length; i++) {
                 let li = document.createElement('li');
 
@@ -36,7 +36,7 @@ export class Header {
                 menuHeader.appendChild(li);
             }
         }
-        //Pokud je přihlášen pojištěnec nebo je uživatel odhlášen, tak zobrazíme jen dvě položky v menu
+        // If the insured is logged in or the user is logged out, we only display two items in the menu
         else {
             for (let i = 0; i < menuItem.length; i++) {
 
@@ -56,7 +56,7 @@ export class Header {
     }
 
     /**
-     * Metoda, která odstraní aktuální položku v menu
+     * A method that removes the current menu item
      */
     removeMenu() {
         let li = document.querySelectorAll('.menu');

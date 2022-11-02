@@ -1,11 +1,11 @@
 /**
- * Třída, která vytvoří informační div na stránce
+ * A class that creates an info div on a page
  */
 export class InfoParagraph{
 
     /**
-     * @param {string} paragraph - informace zobrazená uživateli
-     * @param {string} location - místo v DOMu, kde vložíme div
+     * @param {string} paragraph Information displayed by users
+     * @param {string} location The place in the DOM where we insert the div
      */
     constructor(paragraph, location){
         this.paragraph = paragraph;
@@ -14,15 +14,13 @@ export class InfoParagraph{
     }
 
     /**
-     * Metoda, která vytvoří informační div na stránce
-     * @param {string} paragraph - informace zobrazená uživateli
-     * @param {string} location - místo v DOMu, kde vložíme div
+     * A method that creates an info div on the page
      */
-    createParagraph(paragraph, location){
+    createParagraph(){
         let div = document.createElement('div');
         div.setAttribute('class', 'info-box');
-        div.innerHTML = `<p>${paragraph}</p>`;
-        location.appendChild(div);
+        div.innerHTML = `<p>${this.paragraph}</p>`;
+        this.location.appendChild(div);
     }
 }
 

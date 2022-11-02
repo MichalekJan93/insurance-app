@@ -1,26 +1,28 @@
 
 /**
- * Třídá Cookie vytváří, čte a odstraňuje cookie na stránce
+ * The Cookie class creates, reads, and deletes cookies on the page
  */
 export class Cookie{
     /**
-     * @param {string} name - název cookie
-     * @param {*} value - hodnota cookie
+     * @param {string} name - cookie name
+     * @param {string} value - cookie value
      */
     constructor(name, value){
         this.name = name;
         this.value = value;
     }
 
-    /* Metoda pro vytvoření cookie */
+    /**
+     * A method to create a cookie
+     */
     setCookie(){
         document.cookie = this.name + "=" + this.value + "; max-age=31536000; path=/; Secure"
     }
 
     /**
-     * Metoda pro zjištění hodnoty cookie
-     * @param {string} cname - název cookie od kterého hledáme hodnotu.
-     * @returns - při nalezení cookie vrátí hodnotu cookie. Při nenalezení vrátí prázdý string
+     * Method to find the cookie value
+     * @param {string} cname The name of the cookie from which we are looking for a value
+     * @returns Returns the cookie value when a cookie is found. Returns an empty string if not found
      */
     getCookie(cname) {
         let name = cname + "=";
@@ -39,9 +41,9 @@ export class Cookie{
     }
 
     /**
-     * Metoda pro ověření existence cookie
-     * @param {string} name - název cookie, které hledáme
-     * @returns - při nalazení cookie, vrátí true, jinak false
+     * A method for verifying the existence of a cookie
+     * @param {string} name The name of the cookie we are looking for
+     * @returns If the cookie is found, returns true, otherwise false
      */
     checkCookie(name){
         if (document.cookie.split(';').some((item) => item.trim().startsWith(name))) {
@@ -53,8 +55,8 @@ export class Cookie{
     }
 
     /**
-     * Metoda pro vymazání cookie
-     * @param {string} name - název cookie, které chceme vymazat
+     * Method for deleting cookies
+     * @param {string} name The name of the cookie we want to delete
      */
     deleteCookie(name){
         document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;

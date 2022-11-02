@@ -1,24 +1,25 @@
 
 /**
- * Třída Box vytváří a odstraňuje element section.
- * Třídá, také edituje atribut class v elementu section.
+ * The Box class creates and deletes the section element.
+ * Class, also edits the class attribute in the section element.
  */
 class Box{
 
-    /* V konstruktoru máme uloženou section, kterou právě vidíme na stránce */
+    /* In the constructor, we have stored the section that we are currently seeing on the page */
     constructor(){
         this.newBox = document.createElement('section');
     }
 
-    /* Metoda nastavi velikost okna elementu <section> podle velikosti headeru */
+    /* The method sets the window size of the <section> element according to the size of the header */
     widthForBox(){
         let header = document.querySelector('header');
         this.newBox.style.width = header.clientWidth + 'px';
     }
 
     /**
-    * Pomocí metody přidělíme section atributy.
-    * @returns section s atributy
+    * Method with which we assign the displayed section a new className
+    * @returns Section with newly assigned attributes
+    * @param {string} className The name of the class that we will assign to the section that we are currently displaying
     */
     createBox(className){
         this.newBox.setAttribute('class', 'section');
@@ -28,13 +29,18 @@ class Box{
         return this.newBox;
     }
 
-    /* Metoda pro pro přepsání třídy */
+    /**
+     * A method to override section's class name
+     * @param {string} newClassName New class name for section
+     */
     rename(newClassName){
         this.newBox.setAttribute('class', 'section');
         this.newBox.classList.add(newClassName);
     }
 
-    /* Metoda pro vymazáni obsahu v section*/
+    /**
+     * Method for clearing the contents of section
+     */
     remove(){
         this.newBox.innerHTML = '';
     }

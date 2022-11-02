@@ -1,10 +1,10 @@
 /**
- * Třída vytvoří DOM na stránce info
+ * The class creates the DOM on the info page
  */
 export class InfoBox{
 
     /**
-     * Metoda pro vytvoření DOMu
+     * A method for creating the DOM
      */
     insertData(){
         let section = document.querySelector('.section');

@@ -5,20 +5,20 @@ import { Message } from "./message.js";
 import { SessionStorage } from "./sessionStorage.js";
 
 /**
- * Třída, pomocí, které vytváříme dialog a jeho model DOM pro vytvoření pojištění.
- * Třída také ověřuje správnost vstupů od uživatele a následně hodnoty ze vstupů odesílá do souboru php, kde jsou hodnoty dále spracovávány.
+ * The class we use to create a dialog and its DOM model to create insurance.
+ * The class also verifies the correctness of the inputs from the user and subsequently sends the values ​​from the inputs to the php file, where the values ​​are further processed.
  */
 export class CreateInsurance{
 
     constructor(){
-        // Pole s hodnotami, pro input s výběrem typu pojištění.
+        // Field with values, for input with selection of insurance type
         this.insurances = ['Pojištění vozidla', 'Pojištění nemovitosti', 'Životní pojištění', 'Cestovní pojištění'];
     }
 
     /**
-     * Metoda pro aktuální měsíc v číselné formě
-     * @param {number} m - číslo měsíce počítané od 0
-     * @returns - aktuální číslo měsíce
+     * Method for the current month in numeric form
+     * @param {number} m Month number counting from 0
+     * @returns Current month number
      */
     getMonth(m){
         m += 1;
@@ -26,8 +26,8 @@ export class CreateInsurance{
     }
 
     /**
-     * Vytvoření divu pro výběr pojistníka.
-     * @returns div s jeho odelem DOM
+     * Creation of a DIV in which the insured can be selected
+     * @returns DIV with your DOM model
      */
     createSelectInsuranceDiv(){
         let selectInsurance = document.createElement('div');
@@ -50,8 +50,8 @@ export class CreateInsurance{
     }
 
     /**
-     * Metoda pro vytvoření dialogu a jeho modelu DOM
-     * @returns vrátí kompletní element dialog
+     * A method to create a dialog and its DOM model
+     * @returns return element dialog
      */
     createDialog() {
         let today = new Date();
@@ -210,7 +210,7 @@ export class CreateInsurance{
         return dialog;
     }
 
-    /* Metoda pro hover efekt při kliknutí na výběr pojstníka v divu .select-insurance */
+    /* Method for hover effect when clicking on policyholder selection in div .select-insurance */
     hoverEfect(){
         let selectInsurance = document.querySelector('.select-insurance');
         let selectInsurances = document.querySelector('.select-insurances');
@@ -226,7 +226,7 @@ export class CreateInsurance{
         })
     }
 
-    /* Metoda pro vložení typu pojištění do divu s třídou .select-insurances*/
+    /* A method to insert an insurance type into a div with the .select-insurances class*/
     insetInsurance(){
         let selectInsurances = document.querySelector('.select-insurances');
         for(let oneInsurance of this.insurances){
@@ -237,14 +237,14 @@ export class CreateInsurance{
         }
     }
 
-    /* Metoda pro zachyceni kliknuti na typ pojištění ve vstupu Typ pojištění v dialogu a jeho následném vložení do divu .selected-insurance*/
+    /* A method to capture the click on an insurance type in the Insurance Type entry in the dialog and then pasting it into the .selected-insurance div */
     selectInsurance(){
-        /* Zachycení kliknutí na typ pojištění z divu .select-insuranes */
+        // Capturing insurance type clicks from div .select-insuranes
         let allInsurances = document.querySelectorAll('.one-insurance');
         for(let i = 0; i < allInsurances.length; i++){
             allInsurances[i].addEventListener('click', function(event){
                 document.querySelector('.selected-insurance').innerHTML = this.innerText;
-                // Zneviditelnění divu
+                // The invisibility of div
                 let selectInsurances = document.querySelector('.select-insurances');
                 selectInsurances.style.visibility = 'hidden';
                 selectInsurances.style.opacity = '0';
@@ -252,12 +252,12 @@ export class CreateInsurance{
         }
     }
 
-    /* Metoda pro odstranění dialogu */
+    /* Method to remove the dialog */
     deleteDialog() {
         document.body.removeChild(document.querySelector('.insured-dialog'));
     }
 
-    /* Metoda pro zobrazení dialogu */
+    /* A method to display a dialog */
     showDialog() {
         let dialogUser = document.querySelector('.insured-dialog');
         dialogUser.showModal();
@@ -267,9 +267,9 @@ export class CreateInsurance{
     }
 
     /**
-     * Metoda pro stylování elementu při špatně zadaném vstupu do formuláře.
-     * @param {string} text - text chybové hlášky, zobrazené uživateli
-     * @param {DOM element} model - element pro stylování
+     * A method for styling an element when a form input is incorrectly entered
+     * @param {string} text The text of the error message displayed by the user
+     * @param {DOM element} model Element for styling
      */
     controlInput(text, model) {
         let p = document.querySelector('.error-message');
@@ -279,16 +279,16 @@ export class CreateInsurance{
     }
 
     /**
-     * Metoda pro stylování elementu při správném vstupu ve formuláři.
-     * @param {DOM element} model - element pro stylování 
+     * A method to style an element on correct input in a form.
+     * @param {DOM element} model Element for styling
      */
     correctInput(model) {
         document.querySelector(model).style.borderColor = '#e2e2ff';
     }
 
     /**
-     * Metoda pro ověření správnosti vyplnění vstupu s názvem typ
-     * @returns při správném vyplnění vstupu se vrátí hodnota vstupu. Při nesprávném vstupu se zavolá metoda controlInput() a vrátí se false.
+     * A method to verify the correctness of filling in the input named typ
+     * @returns If the input is filled correctly, the value of the input is returned. If the input is incorrect, the controlInput() method is called and false is returned.
      */
     inputType() {
         let value = document.querySelector('.selected-insurance').innerText;
@@ -304,8 +304,8 @@ export class CreateInsurance{
     }
 
     /**
-     * Metoda pro ověření správnosti vyplnění vstupu s názvem částka
-     * @returns při správném vyplnění vstupu se vrátí hodnota vstupu. Při nesprávném vstupu se zavolá metoda controlInput() a vrátí se false.
+     * A method for verifying the correctness of filling in the input named částka
+     * @returns If the input is filled correctly, the value of the input is returned. If the input is incorrect, the controlInput() method is called and false is returned.
      */
     inputAmount() {
         let correctValue = document.querySelector('.insuranceAmount').value;
@@ -320,8 +320,8 @@ export class CreateInsurance{
     }
 
     /**
-     * Metoda pro ověření správnosti vyplnění vstupu s názvem objekt pojištění
-     * @returns při správném vyplnění vstupu se vrátí hodnota vstupu. Při nesprávném vstupu se zavolá metoda controlInput() a vrátí se false.
+     * A method for verifying the correctness of filling in the input named pojištění
+     * @returns If the input is filled correctly, the value of the input is returned. If the input is incorrect, the controlInput() method is called and false is returned.
      */
     inputObject() {
         let value = document.querySelector('.insuranceObject').value.trim();
@@ -337,8 +337,8 @@ export class CreateInsurance{
     }
 
     /**
-     * Metoda pro ověření správnosti vyplnění vstupu s názvem platné od
-     * @returns při správném vyplnění vstupu se vrátí hodnota vstupu. Při nesprávném vstupu se zavolá metoda controlInput() a vrátí se false.
+     * A method for verifying the correctness of filling in the input named platné od
+     * @returns If the input is filled correctly, the value of the input is returned. If the input is incorrect, the controlInput() method is called and false is returned.
      */
     inputValidFrom() {
         let value = document.querySelector('.insuranceValidFrom').value;
@@ -353,8 +353,8 @@ export class CreateInsurance{
     }
 
     /**
-     * Metoda pro ověření správnosti vyplnění vstupu s názvem platné do
-     * @returns při správném vyplnění vstupu se vrátí hodnota vstupu. Při nesprávném vstupu se zavolá metoda controlInput() a vrátí se false.
+     * A method for verifying the correctness of filling in the input named platné do
+     * @returns If the input is filled correctly, the value of the input is returned. If the input is incorrect, the controlInput() method is called and false is returned.
      */
     inputValidUntil() {
         let today = new Date();
@@ -371,49 +371,50 @@ export class CreateInsurance{
     }
 
     /**
-     * Metoda pro získání dat o pojištěnci z databáze
-     * @param {number} personID - id pojištěnce
-     * @returns - data z databáze
+     * Method for obtaining data about the insured from the database
+     * @param {number} personID Insured ID
+     * @returns Data from database
      */
     InsuranceFromDTB(personID) {
+        // We create an object with the data passed in the method parameter
         let callDtbObject = {
             'ID' : personID
         }
-        // Vytvoříme objekt PostAjax s metodou POST a trasou k souboru php
+        // We will create a PostAjax object with the POST method and the path to the php file
         let postData = new PostAjax('POST', './php/personDataForInsurance.php', true);
-        // Zavoláme metodu AJAX pro odeslání dat do souboru PHP
+        // We call the result method to send the data to the PHP file
         let dataDTB = postData.result(callDtbObject);
         return dataDTB;
     }
 
     /**
-     * Asynchornní metoda pro práci s daty z databáze
-     * @param {number} personID - ID pojištěnce
+     * A method for working with data from a database
+     * @param {number} personID Insured ID
      */
     control(personID){
-        //Odešleme id pojištění do metody InsuranceFromDTB
+        //We call the InsuranceFromDTB method and in the parameter pass it the values ​​from the parameter of this method
         let dataDtb = this.InsuranceFromDTB(personID);
         dataDtb
             .then((result) => {
-                //Jmené vložíme do divu s třídou .personFirstName
+                // We insert the name into the div with the .personFirstName class
                 let personFirstName = document.querySelector('.personFirstName');
                 personFirstName.setAttribute('value', result[0].firstName);
-                //Příjmeni vložíme do divu s třídou .personLastName
+                // We insert the last name into the div with the .personLastName class
                 let personLastName = document.querySelector('.personLastName');
                 personLastName.setAttribute('value', result[0].lastName);
             })
     }
 
     /**
-     * Metoda pro odeslání dat z formuláře do databáze
-     * @param {string} type - typ pojištění
-     * @param {string} amount - častka 
-     * @param {string} subject - objekt pojištění
-     * @param {string} validFrom - platnost pojištění od
-     * @param {string} validUntil - platnost pojištění do
-     * @param {number} personID - id pojištěnce
-     * @param {number} insurerID - id pojistitele
-     * @returns data z php souboru
+     * A method to send data from a form to a database
+     * @param {string} type Type insurance
+     * @param {string} amount Ammount
+     * @param {string} subject Insurance object
+     * @param {string} validFrom Insurance valid from
+     * @param {string} validUntil Insurance valid until
+     * @param {number} personID Insured ID
+     * @param {number} insurerID Insurer ID
+     * @returns Data from database
      */
     registerDataSend(type, amount, subject, validFrom, validUntil, personID, insurerID) {
         let callDtbObject = {
@@ -425,64 +426,64 @@ export class CreateInsurance{
             'personID' : personID,
             'insurerID' : insurerID
         }
-        // Vytvoříme objekt PostAjax s metodou POST a trasou k souboru php
+        // We will create a PostAjax object with the POST method and the path to the php file
         let postData = new PostAjax('POST', './php/registerInsurance.php');
-        // Zavoláme metodu AJAX pro odeslání dat do souboru PHP
+        // We call the result method to send the data to the PHP file
         let dataDTB = postData.result(callDtbObject);
         return dataDTB;
     }
 
     /**
-     * Metoda pro práci s daty z formuláře
-     * @param {string} type - typ pojištění
-     * @param {string} amount - častka
-     * @param {string} subject - objekt pojištění
-     * @param {string} validFrom - platnost pojištění od
-     * @param {string} validUntil - platnost pojištění do
-     * @param {number} personID - id pojištěnce
-     * @param {number} insurerID - id pojistitele
-     * @param {number} page - Zjištění na jaké stránce se uživatel nachází. 1 - section pojištění, 0 - dialog pojištění
+     * A method for working with data from a form
+     * @param {string} type Type insurance
+     * @param {string} amount Ammount
+     * @param {string} subject Insurance object
+     * @param {string} validFrom Insurance valid from
+     * @param {string} validUntil Insurance valid until
+     * @param {number} personID Insured ID
+     * @param {number} insurerID Insurer ID
+     * @param {number} page Finding out what page the user is on. 1 - insurance section, 0 - insurance dialog
      */
     sendData(type, amount, subject, validFrom, validUntil, personID, insurerID, page) {
         if (type && amount && subject && validFrom && validUntil && personID && insurerID) {
-            //Zavoláme metodu registerDataSend s parametry z dat z formuláře
+            // We call the registerDataSend method with parameters from data from the form
             let dataDTB = this.registerDataSend(type, amount, subject, validFrom, validUntil, personID, insurerID);
             dataDTB.then(function (result) {
-                //Po odeslání dat z formuláře, odstraníme dialog
+                // After sending the data from the form, we will remove the dialog
                 document.querySelector('.insured-dialog').remove();
-                //Ověříme na jaké stránce se nachází uživatel
+                // We will verify which page the user is on
                 if(page){
-                    //Odstraníme všechny information-boxy s daty o pojištění
+                    // We will remove all information boxes with insurance data
                     let infoBoxes = document.querySelectorAll('.information-box');
                     for (let oneBox of infoBoxes) {
                         oneBox.remove();
                     }
-                    //Odstraníme ovládací tlačítka pro stránkování
+                    // We will remove the control buttons for pagination
                     document.querySelector('.control').remove();
-                    //Vytvoříme nový objekt a vypíše znovu všechna data o pojištění do stránky i s nově přidaným pojištěním
+                    // We will create a new object and it will rewrite all the insurance data to the page with the newly added insurance
                     let contentBox = new InsurancePersonBox();
                     contentBox.control();
                 }
                 else{
-                    //Odstraníme všechny information-boxy s daty o pojištění
+                    // We will remove all information boxes with insurance data
                     let infoBoxes = document.querySelectorAll('.information-box-dialog');
                     for (let oneBox of infoBoxes) {
                         oneBox.remove();
                     }
-                    //Pokud neexistují tlačítka pro strankování, tak pojištěnec nemá sjednané žádné pojištění a není třeba mazat tlačítka pro strankování. Odstraníme jen v divu .person-insurance text, že pojistník nemá sjednané žádné pojištění
+                    // If there are no paging buttons, the insured has no insurance and there is no need to delete the paging buttons. We only remove the .person-insurance text in div that the policyholder has no insurance
                     if(document.querySelector('.control-dialog')){
                         document.querySelector('.control-dialog').remove();  
                     }
                     else{
                         document.querySelector('.person-insurances').firstChild.remove();
                     }
-                    //Vytvoříme nový objekt pro ziskání id pojištěnce ze session storage
+                    // We will create a new object to obtain the policyholder's id from session storage
                     let sessionStorage = new SessionStorage();
-                    //Vytvoříme nový objekt a vypíše znovu všechna data o pojištění do dialogu i s nově přidaným pojištěním
+                    // We will create a new object and it will rewrite all the insurance data in the dialog with the newly added insurance
                     let contentBox = new Information();
                     contentBox.control(sessionStorage.getSessionData())
                 }
-                // Vypíše potvrzovací zprávu uživateli
+                // The object prints a confirmation message to the user
                 let message = new Message('Pojištění bylo úspěšně vytvořeno');
             });
         }
