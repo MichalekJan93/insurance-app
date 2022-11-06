@@ -376,7 +376,6 @@ let observerMenuHeader = new MutationObserver(MutationRecord =>{
     let menu = document.querySelectorAll('.menu');
     for(let i = 0; i < menu.length; i++){
         menu[i].addEventListener('click', function(event){
-            console.log(event.target.innerText);
         // We will delete the existing content in the section
         newBox.remove();
         // In the className variable, we insert the name of the item from the menu that we clicked on
