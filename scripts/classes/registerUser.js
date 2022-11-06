@@ -1,13 +1,15 @@
 import { PostAjax} from "../ajax/postAjax.js";
 import { Message } from "./message.js";
+/**
+ * A class for creating a sectio home for a registered insurare
+ */
 
 export class RegisterUser{
 
     /**
-     * Metoda pro vytvoreni DOM elementu <dialog>, ktery slouzi pro registraci uzivatele
-     * @returns {DOM element} - metoda vrati cely element dialog  
+     * The method creates a dialog for registering the insured
+     * @returns dialog
      */
-
     createDialog(){
         let dialog = document.createElement('dialog');
         let registerDiv = document.createElement('div');
@@ -79,8 +81,9 @@ export class RegisterUser{
     }
 
     /**
-     * Metoda pro vepsani zpravy do formulare, napr. pri spatne zadane emailove adrese.
-     * @param {string} text
+     * A method for styling an element when a form input is incorrectly entered
+     * @param {string} text The text of the error message displayed by the user
+     * @param {DOM element} model Element for styling
      */
      controlInput(text, model) {
         let p = document.querySelector('.error-message');
@@ -89,10 +92,18 @@ export class RegisterUser{
         document.querySelector(model).style.borderColor = '#FF5436';
     }
 
+    /**
+     * A method to style an element on correct input in a form.
+     * @param {DOM element} model Element for styling
+     */
     correctInput(model) {
         document.querySelector(model).style.borderColor = '#e2e2ff';
     }
 
+    /**
+     * A method for verifying the correctness of filling in the input named jméno
+     * @returns If the input is filled correctly, the value of the input is returned. If the input is incorrect, the controlInput() method is called and false is returned.
+     */
     inputFirstName() {
         let value = document.querySelector('.user-firstName').value.trim();
         let correctValue = value.charAt(0).toUpperCase() + value.slice(1);
@@ -106,6 +117,10 @@ export class RegisterUser{
         }
     }
 
+    /**
+     * A method for verifying the correctness of filling in the input named příjmení
+     * @returns If the input is filled correctly, the value of the input is returned. If the input is incorrect, the controlInput() method is called and false is returned.
+     */
     inputLastName() {
         let value = document.querySelector('.user-lastName').value.trim();
         let correctValue = value.charAt(0).toUpperCase() + value.slice(1);
@@ -120,9 +135,8 @@ export class RegisterUser{
     }
 
    /**
-    * Metoda pro kontrolu spravne zadaneho emailu.
-    * @returns {string} Pokud spravne je zadana emailova adresa, tak metoda vrati uzivatelem zadanou emailovou adresu.
-    * @returns {boolean} Pokud emailova adresa nesplni podminku, tak metoda vrati false.
+     * A method for verifying the correctness of filling in the input named email
+     * @returns If the input is filled correctly, the value of the input is returned. If the input is incorrect, the controlInput() method is called and false is returned.
     */
     inputEmail() {
         let RegisterEmail = document.querySelector('.user-email');
@@ -139,9 +153,8 @@ export class RegisterUser{
     }
 
    /**
-    * Metoda pro kontrolu delky zadaneho hesla
-    * @returns {string} pri splneni podminky, vrati metoda zadane heslo.
-    * @returns {boolean} pri nesplneni podminky vrati false a vypise chybovou zpravu uzivateli do formulare.
+     * Method for verifying the correctness of the entered password
+     * @returns If the password is written correctly, we return the password, if not we return false. If no password is entered at all, we return null.
     */
     inputPassword(){
         let correctValue = document.querySelector('.user-password').value.trim();
@@ -156,9 +169,8 @@ export class RegisterUser{
     }
 
    /**
-    * Metoda overi jestli se zadane heslo shoduje se zadanym opetovnym heslem.
-    * @returns {string} Metoda pri splneni podminky vrati heslo.
-    * @returns {boolean} Metoda pri nespleni podminky vrati false a vypise chybovou zpravu uzivateli do formulare.
+     * A method for checking passwords. We check if the passwords match.
+     * @returns If the password is written correctly, we return the password, if not we return false. If no password is entered at all, we return null.
     */
     inputRepeatPassword(){
         let correctValue = document.querySelector('.user-repeat-password').value.trim();
@@ -176,10 +188,13 @@ export class RegisterUser{
     }
 
     /**
-     * Metoda pro odeslani dat pomoci AJAXU na server.
-     * @param {string} userEmail email zadany uzivatelem do formulare.
-     * @param {string} userPassword heslo zadane uzivatelem do formulare.
-     * @returns {promise} Metoda vrati promisu.
+     * A method for working with data from a form
+     * @param {string} userEmail email entered by the user in the form
+     * @param {string} userPassword password entered by the user in the form
+     * @param {string} userRepeatPassword repeat password entered by the user in the form
+     * @param {string} firstName first name entered by the user in the form
+     * @param {string} lastName last naem entered by the user in the form
+     * @returns Data from database
      */
     registerDataSend(userEmail, userPassword, firstName, lastName){
         let callDtbObject = {
@@ -188,46 +203,49 @@ export class RegisterUser{
             'email' : userEmail,
             'password' : userPassword
         }
+        // We will create a PostAjax object with the POST method and the path to the php file
         let postData = new PostAjax('POST', './php/registerUser.php');
+        // We call the result method to send the data to the PHP file
         let dataDTB = postData.result(callDtbObject);
         return dataDTB;
     }
 
     /**
-     * Metoda vymaze okno dialogu.
+     * The method removes the dialog from the page
      */
     deleteDialog(){
         document.body.removeChild(document.querySelector('.register-dialog'));
     }
 
-
-    /* 
-    NAPSAT PODMINKU PRO VYPLNENI VSECH POLI
-    
-    */
    /**
-    * 
-    * @param {string} userEmail email zadany uzivatelem do formulare.
-    * @param {string} userPassword heslo zadane uzivatelem do formulare.
-    * @param {string} userRepeatPassword heslo zadane uzivatelem do formulare.
+    * A method for working with data from a form
+    * @param {string} userEmail email entered by the user in the form
+    * @param {string} userPassword password entered by the user in the form
+    * @param {string} userRepeatPassword repeat password entered by the user in the form
+    * @param {string} firstName first name entered by the user in the form
+    * @param {string} lastName last naem entered by the user in the form
     */
     inputs(userEmail, userPassword, userRepeatPassword, firstName, lastName){
+        // We will check if the data in the form is all entered and meets the conditions.
         if(userEmail && userPassword && userRepeatPassword && firstName && lastName){
+            // We send the insurer id to the registerDataSend method
             let dataDTB = this.registerDataSend(userEmail, userPassword, firstName, lastName);
-            dataDTB.then(function(result){ // Pracujeme s promisou
-                let answer = (text) => {  // Funkce pro vepsani zpravy do formulare, napr. pri kontrole, jestli uzivatel s emailovou adresou je jiz zaregistrovan
-                    let p = document.querySelector('.error-message');
-                    p.innerHTML = text;
-                    p.style.visibility = 'visible';
-                };
-
-                if(result){ // Pokud se registrace provede
-                    document.body.removeChild(document.querySelector('.register-dialog'));
-                    let message = new Message('Uživatel byl úspěšně zaregistrován');
-                }
-                else{ // Pokud uzivatel s emailovou adresou je jiz zaregistrovan, tak se vypise chybova zprava do formulare.
-                    answer('Uživatel s touto adresou je již registrován!');
-                }
+            dataDTB
+                .then(function(result){
+                    let answer = (text) => { // Function for entering a message into the form, e.g. when checking whether a user with an email address is already registered
+                        let p = document.querySelector('.error-message');
+                        p.innerHTML = text;
+                        p.style.visibility = 'visible';
+                    };
+                    // If the registration is done
+                    if(result){
+                        document.body.removeChild(document.querySelector('.register-dialog'));
+                        let message = new Message('Uživatel byl úspěšně zaregistrován');
+                    }
+                    // If the user is registered with an email address, we will write a message in the form
+                    else{
+                        answer('Uživatel s touto adresou je již registrován!');
+                    }
             })
         }
     }

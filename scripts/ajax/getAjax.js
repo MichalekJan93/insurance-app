@@ -1,9 +1,12 @@
+/**
+ * A class for communicating with the database using the GET method
+ */
 export class GetAjax{
 
     /**
-     * @param {*} method 
-     * @param {*} url 
-     * @param {*} asynchronous 
+     * @param {string} method - method of the HTTP protocol
+     * @param {string} file - php file to which we send the data
+     * @param {boolean} asynchronous 
      */
     constructor(method, url, asynchronous = false){
         this.method = method;
@@ -12,8 +15,8 @@ export class GetAjax{
     }
 
     /**
-     * Asynchornní metoda, která slouží jako navratová hodnota.
-     * @returns result
+     * An asynchronous method that serves as a return value.
+     * @returns Data from the database
      */
     async result(){
         let result;
@@ -24,7 +27,8 @@ export class GetAjax{
     }
 
     /**
-     * Metoda, která příjme data z databaze
+     * A method that receives data from the database
+     * @returns Data from the database
      */
     ajax(){
         return new Promise ((resolve, reject) => {

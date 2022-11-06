@@ -1,8 +1,10 @@
+/**
+ * A class for communicating with the database using the POST method
+ */
 export class PostAjax{
-
     /**
-     * @param {string} method - metoda HTTP protokolu
-     * @param {string} file - soubor php, do kterého odesíláme data
+     * @param {string} method - method of the HTTP protocol
+     * @param {string} file - php file to which we send the data
      */
     constructor(method, file){
         this.method = method;
@@ -10,9 +12,9 @@ export class PostAjax{
     }
 
     /**
-     * Asynchornní metoda, která slouží jako navratová hodnota.
-     * @param {string} object - data, která chceme odeslat pomocí Ajaxu do souboru php.
-     * @returns result
+     * An asynchronous method that serves as a return value.
+     * @param {string} object The data we want to send using Ajax to the php.
+     * @returns Data from the database
      */
     async result(object){
         let result;
@@ -25,9 +27,9 @@ export class PostAjax{
     }
 
     /**
-     * Metoda, která odešle data do souboru php
-     * @param {string} object - data, která odešleme pomocí Ajaxu do souboru php.
-     * @returns url - funkce url, vrátí kompletní url adresu, která se odešle přes Ajax do souboru php.
+     * A method that sends data to a php
+     * @param {string} object The data we send using Ajax to the php.
+     * @returns promise
      */
     async ajax(object){
         return new Promise ((resolve, reject) => {
@@ -36,9 +38,10 @@ export class PostAjax{
                 let x = 0;
                 let url = '';
 
+                // Cycle to create a url address
                 for(let [key, value] of Object.entries(object)){
 
-                    // Podmínka zajistí, že url bude začínat bez znaku &
+                    // The condition ensures that the values in the post method sent to the url start without the & character
                     if(x == 0){
                         url = url + `${key}=${value}`; 
                         x = 1;
@@ -51,7 +54,7 @@ export class PostAjax{
                 return url;
             }
 
-            /* Nastaveni pro fetch */
+            // Set for fetch
             let fetchOptions = {
                 method: this.method,
                 body : url(object),
@@ -63,9 +66,10 @@ export class PostAjax{
                 },
             };
 
-            /* Nacteni dat z databaze pomoci metody fetch */
+            // Loading data from the database using the fetch method
             let response = fetch(this.file, fetchOptions);
 
+            // Response from the server. Either we send the data to a js file, or we write an error to the console.
             response
             .then((response) => response.json()).then((data) => resolve(data))
             .catch((error) => reject('Error: Databaze nenalezena'));

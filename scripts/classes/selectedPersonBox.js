@@ -1,9 +1,15 @@
 import { PostAjax } from "../ajax/postAjax.js";
 import { SessionStorage } from "./sessionStorage.js";
 
+/**
+ * A class to create a dialog where we can select an insured to add his insurance
+ */
 
 export class SelectedPersonBox {
 
+    /**
+     * A method for creating a dialog and its element
+     */
     createSelectedBox(){
         let selectedDialog = document.createElement('dialog');
         let paragraph = document.createElement('p');
@@ -40,16 +46,25 @@ export class SelectedPersonBox {
 
     }
 
+    /**
+     * The method displays the registration dialog
+     */
     showDialog(){
         let dialogSelectedPerson = document.querySelector('.selected-box');
         dialogSelectedPerson.showModal();
         this.hoverEfect();
     }
 
+    /**
+     * The method removes the dialog from the page
+     */
     deleteDialog(){
         document.body.removeChild(document.querySelector('.selected-box'));
     }
 
+    /**
+     * Adding css hover for elemenet .select-persons
+     */
     hoverEfect(){
         let selectPerson = document.querySelector('.select-person');
         let selectPersons = document.querySelector('.select-persons');
@@ -65,23 +80,29 @@ export class SelectedPersonBox {
         })
     }
 
-    /* Funkce pro ziskani dat z databaze */
+    /**
+     * A method to send data from a form to a database
+     * @returns Data from database 
+     */
     dataFromDTB() {
-        // V objektu máme prázdne vlastnosti, protože chceme z databáze vypsat všechny uživatele nacházející se v databázi.
+        // We have empty properties in the object because we want to list all the users in the database from the database.
         let callDtbObject = { 
             'firstName' : '',
             'lastName' : '',
             'NIP' : ''
         }
-        // Vytvoříme objekt PostAjax s metodou POST a trasou k souboru php
+        // We will create a PostAjax object with the POST method and the path to the php file
         let dtb = new PostAjax('POST', './php/wievInsuredPersonBox.php', true);
-        // Zavoláme metodu AJAX pro odeslání dat do souboru PHP
+        // We call the result method to send the data to the PHP file
         let dataDTB = dtb.result(callDtbObject);
         return dataDTB;
     }
 
-    /* Funkce pro naplneni section information-boxy */
+    /**
+     * A method for working with data from a form
+     */
     control() {
+        // We send the insurer id to the registerDataSend method
         let dataDtb = this.dataFromDTB();
         let selectPersons = document.querySelector('.select-persons');
         selectPersons.innerHTML = '';
@@ -93,20 +114,20 @@ export class SelectedPersonBox {
                 selectPersons.append(onePersonDiv);
             }
 
-            /* Zachitime kliknuti na pojistnika z divu .select-persons */
+            // Let's catch a click on the policyholder from div .select-persons
             let allPersons = document.querySelectorAll('.person');
             for(let i = 0; i < allPersons.length; i++){
                 allPersons[i].addEventListener('click', function(event){
                     document.querySelector('.selected-person').innerHTML = this.innerText;
                     let personID = this.getAttribute('class').substring(11,this.length);
-                    /* Odstraneni divu */
+                    // Removed div
                     let selectPersons = document.querySelector('.select-persons');
                     selectPersons.style.visibility = 'hidden';
                     selectPersons.style.opacity = '0';
                     let btn = document.querySelector('.selected-button');
                     btn.setAttribute('class','selected-button enabled');
                     btn.disabled = false;
-
+                    // We create a SessionStorage object and add the id of the selected insured to the session storage
                     let sessionStorage = new SessionStorage();
                     sessionStorage.setSessionStorage(personID);
                 })
