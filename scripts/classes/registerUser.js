@@ -189,11 +189,11 @@ export class RegisterUser{
 
     /**
      * A method for working with data from a form
-     * @param {string} userEmail email entered by the user in the form
-     * @param {string} userPassword password entered by the user in the form
-     * @param {string} userRepeatPassword repeat password entered by the user in the form
-     * @param {string} firstName first name entered by the user in the form
-     * @param {string} lastName last naem entered by the user in the form
+     * @param {string} userEmail            Email entered by the user in the form
+     * @param {string} userPassword         Password entered by the user in the form
+     * @param {string} userRepeatPassword   Repeat password entered by the user in the form
+     * @param {string} firstName            First name entered by the user in the form
+     * @param {string} lastName             Last naem entered by the user in the form
      * @returns Data from database
      */
     registerDataSend(userEmail, userPassword, firstName, lastName){
@@ -219,11 +219,11 @@ export class RegisterUser{
 
    /**
     * A method for working with data from a form
-    * @param {string} userEmail email entered by the user in the form
-    * @param {string} userPassword password entered by the user in the form
-    * @param {string} userRepeatPassword repeat password entered by the user in the form
-    * @param {string} firstName first name entered by the user in the form
-    * @param {string} lastName last naem entered by the user in the form
+    * @param {string} userEmail             Email entered by the user in the form
+    * @param {string} userPassword          Password entered by the user in the form
+    * @param {string} userRepeatPassword    Repeat password entered by the user in the form
+    * @param {string} firstName             First name entered by the user in the form
+    * @param {string} lastName              Last naem entered by the user in the form
     */
     inputs(userEmail, userPassword, userRepeatPassword, firstName, lastName){
         // We will check if the data in the form is all entered and meets the conditions.

@@ -4,8 +4,8 @@
  */
 export class Cookie{
     /**
-     * @param {string} name - cookie name
-     * @param {string} value - cookie value
+     * @param {string} name     Cookie name
+     * @param {string} value    Cookie value
      */
     constructor(name, value){
         this.name = name;

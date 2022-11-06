@@ -106,7 +106,7 @@ export class Login{
 
     /**
      * A method that receives data about insured persons from the database
-     * @param {string} userEmail The user's email entered in the form
+     * @param {string} userEmail    The user's email entered in the form
      * @param {string} userPassword The user's password entered in the form
      * @returns Data from the database
      */
@@ -131,7 +131,7 @@ export class Login{
 
     /**
      * A method for working with data from a form
-     * @param {string} userEmail The user's email entered in the form
+     * @param {string} userEmail    The user's email entered in the form
      * @param {string} userPassword The user's password entered in the form
      */
     inputs(userEmail, userPassword){

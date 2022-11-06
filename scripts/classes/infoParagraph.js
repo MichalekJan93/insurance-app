@@ -4,8 +4,8 @@
 export class InfoParagraph{
 
     /**
-     * @param {string} paragraph Information displayed by users
-     * @param {string} location The place in the DOM where we insert the div
+     * @param {string} paragraph    Information displayed by users
+     * @param {string} location     The place in the DOM where we insert the div
      */
     constructor(paragraph, location){
         this.paragraph = paragraph;

@@ -452,16 +452,16 @@ export class RegisterPerson {
 
     /**
      * A method to send data from a form to a database
-     * @param {string} firstName Name of the insured
-     * @param {string} lastName  Lastname of the insured
-     * @param {string} birthdate Date of birth of the insured
-     * @param {string} city Residence of the insured
-     * @param {string} address Adress of the insured
-     * @param {number} NIP NIP of the insured
-     * @param {string} phone Phone number of the insured
-     * @param {string} email Email of the insured
-     * @param {number} insurerID ID of the insurer that registers the insured
-     * @param {string} passwordFirst Password entered during registration
+     * @param {string} firstName        Name of the insured
+     * @param {string} lastName         Lastname of the insured
+     * @param {string} birthdate        Date of birth of the insured
+     * @param {string} city             Residence of the insured
+     * @param {string} address          Adress of the insured
+     * @param {number} NIP              NIP of the insured
+     * @param {string} phone            Phone number of the insured
+     * @param {string} email            Email of the insured
+     * @param {number} insurerID        ID of the insurer that registers the insured
+     * @param {string} passwordFirst    Password entered during registration
      * @returns Data from database
      */
     registerDataSend(firstName, lastName, birthdate, city, address, NIP, phone, email, insurerID, passwordFirst) {
@@ -486,16 +486,16 @@ export class RegisterPerson {
 
     /**
      * A method for working with data from a form
-     * @param {string} firstName Name of the insured
-     * @param {string} lastName  Lastname of the insured
-     * @param {string} birthdate Date of birth of the insured
-     * @param {string} city Residence of the insured
-     * @param {string} address Adress of the insured
-     * @param {number} NIP NIP of the insured
-     * @param {string} phone Phone number of the insured
-     * @param {string} email Email of the insured
-     * @param {number} insurerID ID of the insurer that registers the insured
-     * @param {string} passwordFirst Password entered during registration
+     * @param {string} firstName        Name of the insured
+     * @param {string} lastName         Lastname of the insured
+     * @param {string} birthdate        Date of birth of the insured
+     * @param {string} city             Residence of the insured
+     * @param {string} address          Adress of the insured
+     * @param {number} NIP              NIP of the insured
+     * @param {string} phone            Phone number of the insured
+     * @param {string} email            Email of the insured
+     * @param {number} insurerID        ID of the insurer that registers the insured
+     * @param {string} passwordFirst    Password entered during registration
      */
     sendData(firstName, lastName, birthdate, city, address, NIP, phone, email, insurerID, passwordFirst, passwordSecond) {
         // We will check if the data in the form is all entered and meets the conditions.

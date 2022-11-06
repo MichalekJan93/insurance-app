@@ -97,8 +97,8 @@ export class Information {
 
     /**
      * A method that works with data about the insured and his insurance. It then inserts the data into elements in the DOM from the dialog
-     * @param {number} personID Insured ID
-     * @param {number} actuallyPageNumber The current page in the list of insurances we are on
+     * @param {number} personID             Insured ID
+     * @param {number} actuallyPageNumber   The current page in the list of insurances we are on
      */
     control(personID, actuallyPageNumber = 1) {
         // We call the InsuranceFromDTB method with parameters from data from the form

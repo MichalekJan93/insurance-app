@@ -64,9 +64,9 @@ export class InsurancePersonBox extends InsuredPersonBox{
 
             /**
              * Functions to create a DIV about insurance
-             * @param {number} rowDtb The index at which we look for information from the JSON object
-             * @param {number} gridrowA GridRow from
-             * @param {number} gridrowB  GridRow until
+             * @param {number} rowDtb       The index at which we look for information from the JSON object
+             * @param {number} gridrowA     GridRow from
+             * @param {number} gridrowB     GridRow until
              */
             function createUserBox(rowDtb, gridrowA, gridrowB) {
                     let section = document.querySelector('.section');

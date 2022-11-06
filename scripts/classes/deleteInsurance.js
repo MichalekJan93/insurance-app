@@ -8,8 +8,8 @@ import { InsurancePersonBox } from "./insurancePersonBox.js";
  */
 export class DeleteInsurance{
     /**
-     * @param {number} insuranceID - insurer ID
-     * @param {number} page Finding out which page the user is on
+     * @param {number} insuranceID  Insurer ID
+     * @param {number} page         Finding out which page the user is on
      */
     constructor(insuranceID, page){
         this.insuranceID = insuranceID;
@@ -36,8 +36,8 @@ export class DeleteInsurance{
 
     /**
      * A method for working with data from a database
-     * @param {number} insuranceID Insured ID
-     * @param {number} page Finding out what page the user is on. 1 - insurance section, 0 - insurance dialog
+     * @param {number} insuranceID  Insured ID
+     * @param {number} page         Finding out what page the user is on. 1 - insurance section, 0 - insurance dialog
      */
     delete(insuranceID, page){
         // We call the InsuranceFromDTB method with parameters from data from the form

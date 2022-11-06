@@ -62,15 +62,15 @@ export class UpdatePerson extends RegisterPerson {
 
     /**
      * A method to send new data to the database
-     * @param {number} id The ID of the insured person we are editing
-     * @param {string} firstName Name of the insured
-     * @param {string} lastName  Lastname of the insured
-     * @param {string} birthdate Date of birth of the insured
-     * @param {string} city Residence of the insured
-     * @param {string} address Adress of the insured
-     * @param {number} NIP NIP of the insured
-     * @param {string} phone Phone number of the insured
-     * @param {string} email Email of the insured
+     * @param {number} id           The ID of the insured person we are editing
+     * @param {string} firstName    Name of the insured
+     * @param {string} lastName     Lastname of the insured
+     * @param {string} birthdate    Date of birth of the insured
+     * @param {string} city         Residence of the insured
+     * @param {string} address      Adress of the insured
+     * @param {number} NIP          NIP of the insured
+     * @param {string} phone        Phone number of the insured
+     * @param {string} email        Email of the insured
      * @returns Data from database
      */
     updateDataSend(id, firstName, lastName, birthdate, city, address, NIP, phone, email) {
@@ -94,15 +94,15 @@ export class UpdatePerson extends RegisterPerson {
 
     /**
      * A method for working with data from a database
-     * @param {number} id The ID of the insured person we are editing
-     * @param {string} firstName Name of the insured
-     * @param {string} lastName  Lastname of the insured
-     * @param {string} birthdate Date of birth of the insured
-     * @param {string} city Residence of the insured
-     * @param {string} address Adress of the insured
-     * @param {number} NIP NIP of the insured
-     * @param {string} phone Phone number of the insured
-     * @param {string} email Email of the insured 
+     * @param {number} id           The ID of the insured person we are editing
+     * @param {string} firstName    Name of the insured
+     * @param {string} lastName     Lastname of the insured
+     * @param {string} birthdate    Date of birth of the insured
+     * @param {string} city         Residence of the insured
+     * @param {string} address      Adress of the insured
+     * @param {number} NIP          NIP of the insured
+     * @param {string} phone        Phone number of the insured
+     * @param {string} email        Email of the insured 
      */
     updateData(id, firstName, lastName, birthdate, city, address, NIP, phone, email) {
         // We will check if the data in the form is all entered and meets the conditions.

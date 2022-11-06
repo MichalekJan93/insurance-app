@@ -56,11 +56,11 @@ export class UpdateInsurance extends CreateInsurance{
 
     /**
      * A method to send new data to the database
-     * @param {number} id Insurance ID
-     * @param {string} type Type insurance
-     * @param {string} amount Ammount
-     * @param {string} subject Insurance object 
-     * @param {string} validUntil Insurance valid until
+     * @param {number} id           Insurance ID
+     * @param {string} type         Type insurance
+     * @param {string} amount       Ammount
+     * @param {string} subject      Insurance object 
+     * @param {string} validUntil   Insurance valid until
      * @returns Data from database
      */
     updateDataSend(id, type, amount, subject, validUntil) {
@@ -80,12 +80,12 @@ export class UpdateInsurance extends CreateInsurance{
 
     /**
      * A method for working with data from a database
-     * @param {number} id Insurance ID
-     * @param {string} type Type insurance
-     * @param {string} amount Ammount
-     * @param {string} subject Insurance object 
-     * @param {string} validUntil Insurance valid until 
-     * @param {number} page The page from which we will edit the data.
+     * @param {number} id           Insurance ID
+     * @param {string} type         Type insurance
+     * @param {string} amount       Ammount
+     * @param {string} subject      Insurance object 
+     * @param {string} validUntil   Insurance valid until 
+     * @param {number} page         The page from which we will edit the data.
      */
     updateData(id, type, amount, subject, validUntil, page) {
         // We will check if the data in the form is all entered and meets the conditions.

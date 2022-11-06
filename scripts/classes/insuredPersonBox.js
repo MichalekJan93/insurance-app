@@ -61,9 +61,9 @@ export class InsuredPersonBox{
 
     /**
      * A method that receives data about insured persons from the database
-     * @param {string} firstName Name of the insured
-     * @param {string} lastName Last name of the insured
-     * @param {number} NIP ZIP code of the insured
+     * @param {string} firstName    Name of the insured
+     * @param {string} lastName     Last name of the insured
+     * @param {number} NIP          ZIP code of the insured
      * @returns Data from the database
      */
     dataFromDTB(firstName, lastName, NIP) {
@@ -81,10 +81,10 @@ export class InsuredPersonBox{
 
     /**
      * A method for working with data from a database
-     * @param {number} actuallyPageNumber The current page in the list of insurances on which the user is located
-     * @param {string} firstName Name of the insured
-     * @param {string} lastName Last name of the insured
-     * @param {number} NIP ZIP code of the insured
+     * @param {number} actuallyPageNumber   The current page in the list of insurances on which the user is located
+     * @param {string} firstName            Name of the insured
+     * @param {string} lastName             Last name of the insured
+     * @param {number} NIP                  ZIP code of the insured
      */
     control(actuallyPageNumber = 1, firstName = '', lastName = '', NIP = '') {
 

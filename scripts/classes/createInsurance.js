@@ -8,9 +8,9 @@ import { SessionStorage } from "./sessionStorage.js";
  * The class we use to create a dialog and its DOM model to create insurance.
  * The class also verifies the correctness of the inputs from the user and subsequently sends the values ​​from the inputs to the php file, where the values ​​are further processed.
  */
-export class CreateInsurance{
+export class CreateInsurance {
 
-    constructor(){
+    constructor() {
         // Field with values, for input with selection of insurance type
         this.insurances = ['Pojištění vozidla', 'Pojištění nemovitosti', 'Životní pojištění', 'Cestovní pojištění'];
     }
@@ -20,16 +20,16 @@ export class CreateInsurance{
      * @param {number} m Month number counting from 0
      * @returns Current month number
      */
-    getMonth(m){
+    getMonth(m) {
         m += 1;
-        return m<10? '0'+m:m;
+        return m < 10 ? '0' + m : m;
     }
 
     /**
      * Creation of a DIV in which the insured can be selected
      * @returns DIV with your DOM model
      */
-    createSelectInsuranceDiv(){
+    createSelectInsuranceDiv() {
         let selectInsurance = document.createElement('div');
         let img = document.createElement('img');
         let selectedInsurance = document.createElement('div');
@@ -60,7 +60,7 @@ export class CreateInsurance{
         let dialogInsured = document.createElement('div');
         let dialogImg = document.createElement('div');
         let img = document.createElement('img');
-        let insuredInformation= document.createElement('div');
+        let insuredInformation = document.createElement('div');
         let dialogTitle = document.createElement('h2');
         let form = document.createElement('form');
         let dialogOff = document.createElement('div');
@@ -211,15 +211,15 @@ export class CreateInsurance{
     }
 
     /* Method for hover effect when clicking on policyholder selection in div .select-insurance */
-    hoverEfect(){
+    hoverEfect() {
         let selectInsurance = document.querySelector('.select-insurance');
         let selectInsurances = document.querySelector('.select-insurances');
-        selectInsurance.addEventListener('click', function(){
+        selectInsurance.addEventListener('click', function () {
             selectInsurances.style.visibility = 'visible';
             selectInsurances.style.opacity = '1';
             selectInsurance.childNodes[1].style.transform = 'rotate(180deg)';
         })
-        selectInsurances.addEventListener('mouseleave', function(){
+        selectInsurances.addEventListener('mouseleave', function () {
             selectInsurances.style.visibility = 'hidden';
             selectInsurances.style.opacity = '0';
             selectInsurance.childNodes[1].style.transform = 'rotate(0deg)';
@@ -227,9 +227,9 @@ export class CreateInsurance{
     }
 
     /* A method to insert an insurance type into a div with the .select-insurances class*/
-    insetInsurance(){
+    insetInsurance() {
         let selectInsurances = document.querySelector('.select-insurances');
-        for(let oneInsurance of this.insurances){
+        for (let oneInsurance of this.insurances) {
             let oneInsuranceDiv = document.createElement('div');
             oneInsuranceDiv.setAttribute('class', 'one-insurance');
             oneInsuranceDiv.innerHTML = oneInsurance;
@@ -238,11 +238,11 @@ export class CreateInsurance{
     }
 
     /* A method to capture the click on an insurance type in the Insurance Type entry in the dialog and then pasting it into the .selected-insurance div */
-    selectInsurance(){
+    selectInsurance() {
         // Capturing insurance type clicks from div .select-insuranes
         let allInsurances = document.querySelectorAll('.one-insurance');
-        for(let i = 0; i < allInsurances.length; i++){
-            allInsurances[i].addEventListener('click', function(event){
+        for (let i = 0; i < allInsurances.length; i++) {
+            allInsurances[i].addEventListener('click', function (event) {
                 document.querySelector('.selected-insurance').innerHTML = this.innerText;
                 // The invisibility of div
                 let selectInsurances = document.querySelector('.select-insurances');
@@ -268,8 +268,8 @@ export class CreateInsurance{
 
     /**
      * A method for styling an element when a form input is incorrectly entered
-     * @param {string} text The text of the error message displayed by the user
-     * @param {DOM element} model Element for styling
+     * @param {string}      text    The text of the error message displayed by the user
+     * @param {DOM element} model   Element for styling
      */
     controlInput(text, model) {
         let p = document.querySelector('.error-message');
@@ -342,7 +342,7 @@ export class CreateInsurance{
      */
     inputValidFrom() {
         let value = document.querySelector('.insuranceValidFrom').value;
-        if (value.length > 1 ) {
+        if (value.length > 1) {
             this.correctInput('.insuranceValidFrom');
             return value;
         }
@@ -358,7 +358,7 @@ export class CreateInsurance{
      */
     inputValidUntil() {
         let today = new Date();
-        today = today.getFullYear() + '-' + this.getMonth(today.getMonth()) + '-' + (today.getDate()<10 ? '0' + today.getDate() : today.getDate());
+        today = today.getFullYear() + '-' + this.getMonth(today.getMonth()) + '-' + (today.getDate() < 10 ? '0' + today.getDate() : today.getDate());
         let value = document.querySelector('.insuranceValidUntil').value;
         if (value.length > 1 && value > today) {
             this.correctInput('.insuranceValidUntil');
@@ -378,7 +378,7 @@ export class CreateInsurance{
     InsuranceFromDTB(personID) {
         // We create an object with the data passed in the method parameter
         let callDtbObject = {
-            'ID' : personID
+            'ID': personID
         }
         // We will create a PostAjax object with the POST method and the path to the php file
         let postData = new PostAjax('POST', './php/personDataForInsurance.php', true);
@@ -391,7 +391,7 @@ export class CreateInsurance{
      * A method for working with data from a database
      * @param {number} personID Insured ID
      */
-    control(personID){
+    control(personID) {
         //We call the InsuranceFromDTB method and in the parameter pass it the values ​​from the parameter of this method
         let dataDtb = this.InsuranceFromDTB(personID);
         dataDtb
@@ -407,24 +407,24 @@ export class CreateInsurance{
 
     /**
      * A method to send data from a form to a database
-     * @param {string} type Type insurance
-     * @param {string} amount Ammount
-     * @param {string} subject Insurance object
-     * @param {string} validFrom Insurance valid from
-     * @param {string} validUntil Insurance valid until
-     * @param {number} personID Insured ID
-     * @param {number} insurerID Insurer ID
+     * @param {string} type         Type insurance
+     * @param {string} amount       Ammount
+     * @param {string} subject      Insurance object
+     * @param {string} validFrom    Insurance valid from
+     * @param {string} validUntil   Insurance valid until
+     * @param {number} personID     Insured ID
+     * @param {number} insurerID    Insurer ID
      * @returns Data from database
      */
     registerDataSend(type, amount, subject, validFrom, validUntil, personID, insurerID) {
         let callDtbObject = {
-            'type' : type,
-            'amount' : amount,
-            'subject' : subject,
-            'validFrom' : validFrom,
-            'validUntil' : validUntil,
-            'personID' : personID,
-            'insurerID' : insurerID
+            'type': type,
+            'amount': amount,
+            'subject': subject,
+            'validFrom': validFrom,
+            'validUntil': validUntil,
+            'personID': personID,
+            'insurerID': insurerID
         }
         // We will create a PostAjax object with the POST method and the path to the php file
         let postData = new PostAjax('POST', './php/registerInsurance.php');
@@ -435,14 +435,14 @@ export class CreateInsurance{
 
     /**
      * A method for working with data from a form
-     * @param {string} type Type insurance
-     * @param {string} amount Ammount
-     * @param {string} subject Insurance object
-     * @param {string} validFrom Insurance valid from
-     * @param {string} validUntil Insurance valid until
-     * @param {number} personID Insured ID
-     * @param {number} insurerID Insurer ID
-     * @param {number} page Finding out what page the user is on. 1 - insurance section, 0 - insurance dialog
+     * @param {string} type         Type insurance
+     * @param {string} amount       Ammount
+     * @param {string} subject      Insurance object
+     * @param {string} validFrom    Insurance valid from
+     * @param {string} validUntil   Insurance valid until
+     * @param {number} personID     Insured ID
+     * @param {number} insurerID    Insurer ID
+     * @param {number} page         Finding out what page the user is on. 1 - insurance section, 0 - insurance dialog
      */
     sendData(type, amount, subject, validFrom, validUntil, personID, insurerID, page) {
         if (type && amount && subject && validFrom && validUntil && personID && insurerID) {
@@ -452,7 +452,7 @@ export class CreateInsurance{
                 // After sending the data from the form, we will remove the dialog
                 document.querySelector('.insured-dialog').remove();
                 // We will verify which page the user is on
-                if(page){
+                if (page) {
                     // We will remove all information boxes with insurance data
                     let infoBoxes = document.querySelectorAll('.information-box');
                     for (let oneBox of infoBoxes) {
@@ -464,17 +464,17 @@ export class CreateInsurance{
                     let contentBox = new InsurancePersonBox();
                     contentBox.control();
                 }
-                else{
+                else {
                     // We will remove all information boxes with insurance data
                     let infoBoxes = document.querySelectorAll('.information-box-dialog');
                     for (let oneBox of infoBoxes) {
                         oneBox.remove();
                     }
                     // If there are no paging buttons, the insured has no insurance and there is no need to delete the paging buttons. We only remove the .person-insurance text in div that the policyholder has no insurance
-                    if(document.querySelector('.control-dialog')){
-                        document.querySelector('.control-dialog').remove();  
+                    if (document.querySelector('.control-dialog')) {
+                        document.querySelector('.control-dialog').remove();
                     }
-                    else{
+                    else {
                         document.querySelector('.person-insurances').firstChild.remove();
                     }
                     // We will create a new object to obtain the policyholder's id from session storage
