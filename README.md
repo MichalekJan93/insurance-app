@@ -8,6 +8,14 @@ This application was created as a project for the final exam for the web applica
 
 My goal was to create a so-called one page application using JavaScript.
 
+### Launch
+#### Login insurer
+name: novak@app.cz
+password: 123123
+#### Login insured
+name: modry@seznam.cz
+password: 123123
+
 ## Technologies
 
 * HTML 5
@@ -17,3 +25,6 @@ My goal was to create a so-called one page application using JavaScript.
 
 ## Licens
 Free license
+
+## Contact
+email - janmichalek@gmail.com
