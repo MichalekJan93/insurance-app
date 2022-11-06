@@ -224,9 +224,10 @@ for(let i = 0; i < menu.length; i++){
 
                 // If we click on "registrovat" we will see inputs for entering the password
                 let registrationBtn = document.querySelector('.registration');
+                let registerPerson = 0; // With the help of variables we will find out if we want to register users.
                 registrationBtn.addEventListener('click', function(){
                     createUser.registrationPerson();
-                    
+                    registerPerson = 1;
                 });
 
                 // Function to remove dialog
@@ -235,7 +236,7 @@ for(let i = 0; i < menu.length; i++){
                 // Submit data from the form after clicking the button registrovat
                 let btnSendRegisterData = document.querySelector('.btn-send-data');
                 btnSendRegisterData.addEventListener('click', function(){
-                createUser.sendData(createUser.inputFirstName(), createUser.inputLastName(), createUser.inputBirthdate(), createUser.inputCity(), createUser.inputAddress(), createUser.inputNIP(), createUser.inputPhone(), createUser.inputEmail(), cookie.getCookie('insurerID'), createUser.inputFirstPassword(registerPerson), createUser.inputSecondPassword(registerPerson));
+                    createUser.sendData(createUser.inputFirstName(), createUser.inputLastName(), createUser.inputBirthdate(), createUser.inputCity(), createUser.inputAddress(), createUser.inputNIP(), createUser.inputPhone(), createUser.inputEmail(), cookie.getCookie('insurerID'), createUser.inputFirstPassword(registerPerson), createUser.inputSecondPassword(registerPerson));
                 });
             })
 
@@ -403,9 +404,10 @@ let observerMenuHeader = new MutationObserver(MutationRecord =>{
 
                 // If we click on "registrovat" we will see inputs for entering the password
                 let registrationBtn = document.querySelector('.registration');
+                let registerPerson = 0; // With the help of variables we will find out if we want to register users.
                 registrationBtn.addEventListener('click', function(){
                     createUser.registrationPerson();
-                    
+                    registerPerson = 1;
                 });
 
                 // Function to remove dialog
@@ -414,7 +416,7 @@ let observerMenuHeader = new MutationObserver(MutationRecord =>{
                 // Submit data from the form after clicking the button registrovat
                 let btnSendRegisterData = document.querySelector('.btn-send-data');
                 btnSendRegisterData.addEventListener('click', function(){
-                createUser.sendData(createUser.inputFirstName(), createUser.inputLastName(), createUser.inputBirthdate(), createUser.inputCity(), createUser.inputAddress(), createUser.inputNIP(), createUser.inputPhone(), createUser.inputEmail(), cookie.getCookie('insurerID'), createUser.inputFirstPassword(registerPerson), createUser.inputSecondPassword(registerPerson));
+                    createUser.sendData(createUser.inputFirstName(), createUser.inputLastName(), createUser.inputBirthdate(), createUser.inputCity(), createUser.inputAddress(), createUser.inputNIP(), createUser.inputPhone(), createUser.inputEmail(), cookie.getCookie('insurerID'), createUser.inputFirstPassword(registerPerson), createUser.inputSecondPassword(registerPerson));
                 });
             })
 
@@ -747,7 +749,7 @@ let observer = new MutationObserver(MutationRecord =>{
 // Element on which we call MutationObserver
 let elem = document.querySelector('section');
 
-// Setting for object MutationObserver
+// Setting for object MutationObserver1
 observer.observe(elem, {
     childList: true,
     subtree: true,
