@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css?v=<?php echo time(); ?>">
-    <title>Document</title>
+    <meta name="description" content="Insurance app">
+    <meta name="keywords" content="Insurance app, presentation application">
+    <meta name="author" content="Jan Michálek">
+    <title>Insurance-app</title>
 </head>
 <body>
     <header>
