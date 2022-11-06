@@ -1,10 +1,10 @@
 /**
- * Třída, pomocí, které odhlásíme uživatele
+ * The class we use to log out the user
  */
 export class LogOut{
 
     /**
-     * Metoda vytvoří div (ikonu) pro odhlášení
+     * The method creates a logout div (icon).
      * @returns div
      */
     createLogoutDiv(){
@@ -14,13 +14,13 @@ export class LogOut{
     }
 
     /**
-     * Metoda vloží div (ikonu) pro přihlášení do DOMu
-     * @param {number} input - role přihlášeného uživatele
+     * The method inserts a login div (icon) into the DOM
+     * @param {number} input Role of the logged in user
      */
     setIcon(input){
         let loginIconDesktop = document.querySelector('.desktop-login');
 
-        // Pokud se přihlásil uživatel
+        // If the user is logged in
         if(input){
             loginIconDesktop.style.display = 'none';
 
@@ -29,21 +29,21 @@ export class LogOut{
 
             let div = document.querySelector('.logout');
 
-            //Pokud existuje div pro odhlášení
+            // If there is a logout div
             if(div){
-                //Vložíme div před div .hamburger-menu
+                // We insert the div before the .hamburger-menu div
                 header.insertBefore(div, hamburgerMenu)
                 div.style.display = 'flex';
             }
             else {
-                //Pokud neexistuje div pro přihlášení, tak ho nejdříve vytvoříme a pak až vložíme div před div .hamburger-menu
+                // If there is no login div, we create it first and then insert the div before the .hamburger-menu div
                 div = this.createLogoutDiv();
                 header.insertBefore(div, hamburgerMenu)
             }
         }
-        else{ //Pokud se odhlásil uživatel
+        else{ // If the user has logged out
             let logOut = document.querySelector('.logout');
-            //Pokud je v DOMu div .logout, tak ho zneviditelníme
+            // If there is a .logout div in the DOM, we make it invisible
             if(logOut != null){
                 logOut.style.display = 'none';
                 loginIconDesktop.style.display = 'flex';

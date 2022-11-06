@@ -1,8 +1,10 @@
-/* Třída, který vytvoří uvodní stránku, pokud není uživatel přihlášen */
+/**
+ * A class that creates a splash page if the user is not logged in
+ */
 export class Overview{
 
     /**
-     * Metoda, pro vytvoření section a její DOM model s daty
+     * A method to create a section and its DOM model with data
      */
     createDivs(){
         let divMainBox = document.createElement('div');

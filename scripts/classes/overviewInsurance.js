@@ -1,19 +1,19 @@
 import { PostAjax } from "../ajax/postAjax.js";
 import { InfoParagraph } from "./infoParagraph.js";
 /**
- * Třída pro vytvoření section home, pro přihlášeného pojistitele
+ * Class for creating a section home, for a registered insurer
  */
 export class OverviewInsurance{
 
     /**
-     * @param {number} insurerID - id přihlašeného pojistitele, id načítáme z cookies
+     * @param {number} insurerID - ID of the registered insurer.
      */
     constructor(insurerID){
         this.insurerID = insurerID;
     }
 
     /**
-     * Metoda pro vytvoření section home a jejího DOMu.
+     * Method to create section home and its DOM.
      */
     createDivs(){
         let section = document.querySelector('section');
@@ -47,57 +47,57 @@ export class OverviewInsurance{
 
             dataInsurer.appendChild(singleChart);
         }
-
+        // We will create an infoParagraph object, which will create an information div in the section
         let infoParagraph = new InfoParagraph('Data z aktuálního měsíce', section);
     }
 
     /**
-     * Metoda pro získání počtu pojištění a počtu pojištěnců z databáze
-     * @param {number} insurerID - id pojistitele
-     * @returns - data z databáze
+     * A method for obtaining the number of insurance policies and the number of insured persons from the database
+     * @param {number} insurerID Insurer ID
+     * @returns Data from database
      */
     InsuranceFromDTB(insurerID) {
         let callDtbObject = {
             'ID' : insurerID
         }
-        // Vytvoříme objekt PostAjax s metodou POST a trasou k souboru php
+        // We will create a PostAjax object with the POST method and the path to the php file
         let postData = new PostAjax('POST', './php/overviewInsurance.php', true);
-        // Zavoláme metodu AJAX pro odeslání dat do souboru PHP
+        // We call the result method to send the data to the PHP file
         let dataDTB = postData.result(callDtbObject);
         return dataDTB;
     }
 
     /**
-     * Asynchronní metoda pro práci s daty z databáze
-     * @param {number} insurerID - ID pojistitele
+     * A method for working with data from a database
+     * @param {number} insurerID Insurer ID
      */
     control(insurerID) {
-        //Odešleme id pojištění do metody InsuranceFromDTB
+        // We send the insurer id to the InsuranceFromDTB method
         let dataDtb = this.InsuranceFromDTB(insurerID);
         dataDtb
             .then(function (result) {
-                // Jméno a přijmení přihlašeného pojistitele, vložíme do divu .person-name
+                // We insert the name and surname of the registered insurer into div .person-name
                 document.querySelector('.person-name').innerHTML = `${result[0].firstName} ${result[0].lastName}`;
-                // Email pojistitele vložíme do divu .personContactSecondParagraph
+                // We insert the insurer's email into the div .personContactSecondParagraph
                 document.querySelector('.personContactSecondParagraph').innerHTML = `${result[0].email}`;
 
-                //Vytvoříme si pole, do kterého vložíme počty pojištěnců a pojištění z databáze z aktuálního měsíce.
+                // We will create a field in which we will insert the number of insured persons and insurance from the database from the current month
                 let valuesFromDtb = [result[0].RowsFromInsurance, result[0].RowsFromOneUserInsurance, result[0].RowsFromInsuredPersons, result[0].RowsFromOneInsuredPersons];
 
-                //Pole s hodnotami, které reprezentují počet uzavřených pojištění a registrovaných pojistníků, které by měl pojistitel splnit v aktuálním měsící.
+                // A field with values ​​that represent the number of policies taken out and policyholders registered that the insurer should fulfill in the current month
                 const valuesMaxLimit = [30, 27, 8, 20];
 
-                //Pole s názvy jednotlivých cílů, které musí pojistitel splnit.
+                // A field with the names of the individual objectives that the insurer must meet.
                 const titleCircle = ['Celkový počet pojištění', 'Váš celkový počet pojištění', 'Celkový počet pojistníků', 'Váš celkový počet pojistníků']
 
-                // Cyklus pro vložení svg s daty a názvů cílů do divu .charts.
+                // Loop to insert svg with data and target names into div .charts
                 for(let i = 0; i < 4; i++){
                     let singleChart = document.querySelector(`.chart${i}`);
 
-                    // Vypočítáme na kolik procent je jednotlivý cíl splněn.
+                    // We calculate the percentage of the individual goal achieved
                     let percentCircle = (valuesFromDtb[i] / valuesMaxLimit[i]) * 100;
 
-                    //Vytvoření svg circle
+                    // Circle svg creation
                     singleChart.innerHTML = `
                     <svg viewbox="0 0 36 36" class="circular-chart">
                         <path class="circle-bg" d="M18 2.0845
@@ -114,7 +114,7 @@ export class OverviewInsurance{
                     </text>`; 
                 }
 
-                //Cyklus pomocí kterého svg s třídou .circular-chart nastavíme barvu pozadí v závislosti na kolik procent je cíl spněn.
+                // Cycle using which svg with class .circular-chart we set the background color depending on how many percent the target is asleep
                 let circularChart = document.querySelectorAll('.circular-chart');
                 for(let i = 0; i < 4; i++){
                     let percentCircle = Math.ceil((valuesFromDtb[i] / valuesMaxLimit[i]) * 100);
@@ -125,7 +125,7 @@ export class OverviewInsurance{
                     } else{
                         circularChart[i].classList.add('green');
                     }
-                    // Centrování .max-value podle počtu pojištění nebo pojištěnců.
+                    // Centering .max-value by the number of insurances or insureds
                     let chart = document.querySelector(`.chart${i}`);
                     if(chart.childNodes[1].childNodes[5].innerHTML > 9){
                         chart.lastChild.classList.add('height');

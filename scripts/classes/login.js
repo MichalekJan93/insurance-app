@@ -7,12 +7,12 @@ import { Message } from "./message.js";
 
 
 /**
- * Třída pro přihlášení uživatele
+ * Class for user login
  */
 export class Login{
 
     /**
-     * Metoda vytvoří dialog pro přihlášení
+     * The method creates a login dialog
      * @returns dialog
      */
     createDialog(){
@@ -69,8 +69,8 @@ export class Login{
     }
 
     /**
-     * Metoda pro stylování elementu při špatně zadaném vstupu do formuláře.
-     * @param {string} text text chybové hlášky, zobrazené uživateli
+     * A method for styling an element when a form input is incorrectly entered
+     * @param {string} text the text of the error message displayed by the user
      */
     controlInput(text){
         let p = document.querySelector('.error-message');
@@ -79,8 +79,8 @@ export class Login{
     }
 
     /**
-     * Metoda ověří správnost vepsaného emailu
-     * @returns při správném vyplnění vstupu se vrátí hodnota vstupu. Při nesprávném vstupu se zavolá metoda controlInput() a vrátí se false.
+     * The method verifies the correctness of the entered email
+     * @returns if the input is filled correctly, the value of the input is returned. If the input is incorrect, the controlInput() method is called and false is returned
      */
     inputEmail(){
         let loginEmail = document.querySelector('.user-email');
@@ -96,8 +96,8 @@ export class Login{
     }
 
     /**
-     * Metoda vložení hesla
-     * @returns Heslo
+     * Password input method
+     * @returns Password
      */
     inputPassword(){
         let loginPassword = document.querySelector('.user-password').value;
@@ -105,45 +105,45 @@ export class Login{
     }
 
     /**
-     * Metoda pro odeslání dat z formuláře do databáze
-     * @param {string} userEmail - email
-     * @param {string} userPassword - heslo
-     * @returns data z php souboru
+     * A method that receives data about insured persons from the database
+     * @param {string} userEmail The user's email entered in the form
+     * @param {string} userPassword The user's password entered in the form
+     * @returns Data from the database
      */
     loginDataSend(userEmail, userPassword){
         let callDtbObject = {
             'user-email' : userEmail,
             'user-password' : userPassword
         }
-        // Vytvoříme objekt PostAjax s metodou POST a trasou k souboru php
+        // We will create a PostAjax object with the POST method and the path to the php file
         let postData = new PostAjax('POST', './php/login.php');
-        // Zavoláme metodu AJAX pro odeslání dat do souboru PHP
+        // We call the result method to send the data to the PHP file
         let dataDTB = postData.result(callDtbObject);
         return dataDTB;
     }
 
     /**
-     * Metoda odstraní dialog pro přihlášení
+     * The method removes the login dialog
      */
     deleteDialog(){
         document.body.removeChild(document.querySelector('.dialog-login'));
     }
 
     /**
-     * Metoda pro práci z daty z formuláře
-     * @param {string} userEmail - email
-     * @param {email} userPassword - heslo
+     * A method for working with data from a form
+     * @param {string} userEmail The user's email entered in the form
+     * @param {string} userPassword The user's password entered in the form
      */
     inputs(userEmail, userPassword){
-        //Ověření, že uživatel vyplnil všechny vstupy formuláře
+        // Verifying that the user has completed all form inputs
         if(userEmail && userPassword){
-            //Zavoláme metodu loginDataSend s parametry z dat z formuláře
+            // We call the loginDataSend method with parameters from data from the form
             let dataDTB = this.loginDataSend(userEmail, userPassword);
             dataDTB.then(function(result){
 
                 /**
-                 * Funkce pro vypsání zprávy při špatném vyplnění formuláře
-                 * @param {string} text - chybový zpráva zobrazená uživateli
+                 * Function to print a message when the form is filled out incorrectly
+                 * @param {string} text Error message displayed to the user
                  */
                 let answer = (text) => {
                     let p = document.querySelector('.error-message');
@@ -152,51 +152,51 @@ export class Login{
                 };
 
                 try{
-                    /* Pokud nepříjde odověď ze serveru, tak vypíšeme chybovou zrávu */
+                    // If there is no response from the server, we will print an error message
                     if(!result){
                         throw Error ('Neplatné přihlašovací údaje!');
                     }
-                    //Převedeme odpověď ze serveru do JSON
+                    // We will convert the response from the server to JSON
                     let user = result;
 
-                    //Pokud se přihlásí pojistitel
+                    // If an insurer logs into the application
                     if(user.login == true && user.role == 1){
-                        //Vytvoříme Cookie, které uchovává informaci o tom, že je užvatel přihlášen
+                        // We will create a cookie that stores information about the fact that the user is logged in
                         let loginCookie = new Cookie('login', true);
                         loginCookie.setCookie();
-                        // Uložíme do Cookie id pojistitele
+                        // We save the insurer's ID in the Cookie
                         let insurerCookie = new Cookie('insurerID', user.insurer);
                         insurerCookie.setCookie();
-                        // Vyměníme ikonu pro přihlášení za ikonu pro odhlášení
+                        // We will replace the login icon with a logout icon
                         let logIcon = new LogOut();
                         logIcon.setIcon(1);
-                        //Odstraníme dialog pro přihlášení
+                        // We will remove the login dialog
                         document.body.removeChild(document.body.lastChild);
-                        //Vytvoříme nové menu
+                        // We will create a new menu
                         let header = new Header(1);
                         controlLogin();
                     }
-                    //Pokud se přihlásí pojištěnec
+                    // If the insured applies
                     else if(user.login == true && user.role == 2){
-                        //Vytvoříme Cookie, které uchovává informaci o tom, že je užvatel přihlášen
+                        // We will create a cookie that stores information about the fact that the user is logged in
                         let loginCookie = new Cookie('login', true);
                         loginCookie.setCookie();
-                        // Uložíme do Cookie id pojistitele
+                        // We save the insurer's ID in the Cookie
                         let insurerCookie = new Cookie('personID', user.person);
                         insurerCookie.setCookie();
-                        // Vyměníme ikonu pro přihlášení za ikonu pro odhlášení
+                        // We will replace the login icon with a logout icon
                         let logIcon = new LogOut();
                         logIcon.setIcon(2);
-                        //Odstraníme dialog pro přihlášení
+                        // We will remove the login dialog
                         document.body.removeChild(document.body.lastChild);
-                        //Vytvoříme nové menu
+                        // We will create a new menu
                         let header = new Header(2);
                         controlLogin();
                     }
-                    // Vypíše potvrzovací zprávu uživateli
+                    // Prints a confirmation message to the user
                     let message = new Message('JSTE ÚSPĚŠNĚ PŘIHLÁŠEN');
 
-                } catch(err){ // Při špatném vyplnění údajů ve formuláři vypíšeme chybovou zprávu uživateli.
+                } catch(err){ // If the data in the form is filled in incorrectly, we will display an error message to the user.
                     console.log(err);
                     answer('Neplatné přihlašovací údaje!');
                 }

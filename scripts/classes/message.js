@@ -1,8 +1,11 @@
+/**
+ * A class that creates a confirmation message
+ */
 export class Message{
 
     /**
-     * Konstruktor, ktery prijme zpravu a spusti metodu displayedMessageBox.
-     * @param {string} message potvrzovaci zprava, ktera se zobrazi uzivateli napr. po prihlaseni.
+     * A constructor that receives a message and runs the displayedMessageBox method
+     * @param {string} message a confirmation message that is displayed to the user, e.g. after logging in
      */
     constructor(message){
         this.message = message;
@@ -10,8 +13,8 @@ export class Message{
     }
 
     /**
-     * Metoda vytvori div pro zobrazeni potvrzovaci zpravy
-     * @returns {DOM} metoda vrati div message-box
+     * The method creates a div to display the confirmation message
+     * @returns Method return the message-box div
      */
     createMessageBox(){
         let messageDiv = document.createElement('div');
@@ -31,7 +34,7 @@ export class Message{
     }
 
     /**
-     * Metoda, ktera necha zavolat metodu createMessageBox pro vytvoreni divu a po uplynuti 1500ms div odstrani.
+     * A method that calls the createMessageBox method to create the div and deletes the div after 1500ms
      */
     displayedMessageBox(){
         this.createMessageBox();

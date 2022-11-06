@@ -3,8 +3,8 @@ import { GetAjax } from "../ajax/getAjax.js";
 import { InfoParagraph } from "./infoParagraph.js";
 
 /**
- * Třída která vytvoří section s daty o pojištění.
- * Třída dědí z třídy InsuredPersonBox
+ * A class that creates a section with insurance data
+ * The class inherits from the InsuredPersonBox class
  */
 export class InsurancePersonBox extends InsuredPersonBox{
 
@@ -13,7 +13,7 @@ export class InsurancePersonBox extends InsuredPersonBox{
     }
 
     /**
-     * Metoda pro vytoření tlačítka pro přidání pojištění do databáze
+     * A method to create a button to add insurance to the database
      * @returns div
      */
     createButton() {
@@ -27,45 +27,46 @@ export class InsurancePersonBox extends InsuredPersonBox{
     }
 
      /**
-      * Metoda, která příjmé data z databáze
-      * @returns data z databáze
+      * A method that receives data about insurances from the database
+      * @returns Data from database
       */
      dataFromDTB() {
-        // Vytvoříme objekt GetAjax s metodou GET a trasou k souboru php
+        // We will create a GetAjax object with the GET method and the path to the php file
         let dtb = new GetAjax('GET', './php/wievInsuranceBox.php', true);
-        // Zavoláme metodu AJAX pro přijetí dat ze souboru PHP
+        // We call the result method to send the data to the PHP file
         let dataDTB = dtb.result();
         return dataDTB;
     }
 
     /**
-     * Metoda pro práci s daty z databáze
-     * @param {*} actuallyPageNumber - aktuální stránka v seznamu pojištěnců, na které se uživatel nachází
+     * A method for working with data from a database
+     * @param {number} actuallyPageNumber The current page in the list of insurances on which the user is located
      */
     control(actuallyPageNumber = 1) {
-        //Index od kterého se mají vypsat data do seznamu z result
-        let data = (actuallyPageNumber - 1) * 5;
-        //Zavoláme metodu InsuranceFromDTB
-        let dataDtb = this.dataFromDTB();
+
         let maxNumberPages;
         let control = document.createElement('div');
         let controlLeft = document.createElement('div');
         let controlRight = document.createElement('div');
         let pageNumber = document.createElement('div');
 
+        // The index from which data should be written to the list from result
+        let data = (actuallyPageNumber - 1) * 5;
+        // We call the DataFromDTB method and store it in the dataDtb variable
+        let dataDtb = this.dataFromDTB();
         dataDtb.then(function (result) {
-            // Délka pole z DTB
+            // The length of the field with the data from the database
             let lengthDtb = result.length;
-            //Maximální počet stránek
+            // Maximum number of pages
             maxNumberPages = Math.ceil(lengthDtb / 5);
             let gridA = 4;
             let gridB = 5;
 
             /**
-             * Funkce pro vytvoření divu o pojištění
-             * @param {number} rowDtb - index pojištění v result 
-             * @param {number} gridrowA - gridRow od
-             * @param {number} gridrowB  - gridRow do
+             * Functions to create a DIV about insurance
+             * @param {number} rowDtb The index at which we look for information from the JSON object
+             * @param {number} gridrowA GridRow from
+             * @param {number} gridrowB  GridRow until
              */
             function createUserBox(rowDtb, gridrowA, gridrowB) {
                     let section = document.querySelector('.section');
@@ -90,7 +91,7 @@ export class InsurancePersonBox extends InsuredPersonBox{
                     informationBoxTwo.setAttribute('class', 'information-box-two-insurance');
                     informationBoxThree.setAttribute('class', 'information-box-three-insurance');
 
-                    /* Převod datumu na cz formát */
+                    // Date conversion to cz format
                     let validUntil = new Date(result[rowDtb].validUntil);
                     let monthUntil = validUntil.getMonth() + 1;
                     let czValidUntil = validUntil.getDate() + '.' + monthUntil + '.' + validUntil.getFullYear();
@@ -121,14 +122,14 @@ export class InsurancePersonBox extends InsuredPersonBox{
                     informationBtns.appendChild(btnDelete);
             }
 
-            // Funkce pro zobrazení tlačítek, pro strankování pojištění
+            // Function for displaying buttons, for paging insurance
             function showControlButton(){
 
-                // Aktuální číslo stránky, vložíme do divu .page-number
+                // We insert the current page number into the div .page-number
                 pageNumber.innerHTML = actuallyPageNumber;
 
-                // Zobrazování ovládacích tlačítek pro strankování, podle toho kde se nachází uživatel.
-                // Pokud se nachází na stránce, ve které není žádné pojištění
+                // Displaying control buttons for paging, depending on where the user is located
+                // If it is on a page that has no insurance
                 if(maxNumberPages == 0){
                     controlRight.style.visibility = 'hidden';
                     controlRight.style.opacity = '0';
@@ -137,9 +138,9 @@ export class InsurancePersonBox extends InsuredPersonBox{
                     pageNumber.style.visibility = 'visible';
                     pageNumber.style.opacity = '1';
                 }
-                // Pokud se nachází na stránce, která je také poslední.
+                // If it is on a page that is also the last one.
                 else if (actuallyPageNumber == maxNumberPages) {
-                    // Pokud je maximální počet stránek pro zobrazení 1
+                    // If the maximum number of pages to display is 1
                     if(maxNumberPages == 1){
                         controlRight.style.visibility = 'hidden';
                         controlRight.style.opacity = '0';
@@ -157,7 +158,7 @@ export class InsurancePersonBox extends InsuredPersonBox{
                         pageNumber.style.opacity = '1';
                     }
                 }
-                // Pokud je maximální počet stránek pro zobrazení roven 1
+                // If the maximum number of pages to display is 1
                 else if (actuallyPageNumber == 1) {
                     controlRight.style.visibility = 'visible';
                     controlRight.style.opacity = '1';
@@ -166,7 +167,7 @@ export class InsurancePersonBox extends InsuredPersonBox{
                     pageNumber.style.visibility = 'visible';
                     pageNumber.style.opacity = '1'; 
                 }
-                // Pokud se nachází na stráne o pojištění větší než jedna a také se nejedná o poslední stránku.
+                // If there is more than one insurance page and it is not the last page
                 else if (actuallyPageNumber > 1 && actuallyPageNumber != maxNumberPages) {
                     controlRight.style.visibility = 'visible';
                     controlRight.style.opacity = '1';
@@ -177,9 +178,7 @@ export class InsurancePersonBox extends InsuredPersonBox{
                 }
             }
 
-            /**
-             * Funkce pro vytvoření tlačítek pro stránkování
-             */
+            // Function to create paging buttons
             function createControlButtons() {
                 let section = document.querySelector('.section');
                 control.getAttribute('class');
@@ -200,16 +199,14 @@ export class InsurancePersonBox extends InsuredPersonBox{
                 showControlButton();
             }
 
-            /**
-             * Funkce pro odeslání aktuálních dat do funkce createUserBox
-             */
+            // A function to send the current data to the createUserBox function
             function insertDataToFunction(){
-                // Nastavíme proměnnou, která bude uchovávat maximální hodnotu indexu pro výpis dat z databáze
+                // We will set a variable that will store the maximum value of the index for extracting data from the database
                 let maxValues = data + 5; 
-                // Pokud proměnna pro uchovávání maximálního indexu bude větší než celková délka pole dat z databáze, tak se proměnna přepíše na délku pole z databáze. Ošetření: voláni hodnot na neexistujícím indexu pole.
+                // If the variable for storing the maximum index will be greater than the total length of the field of data from the database, then the variable will be overwritten to the length of the field from the database. Treatment: calling values ​​on non-existent array index
                 maxValues > lengthDtb ? maxValues = lengthDtb : maxValues = maxValues;
 
-                // Cyklus pro vytváření divu pojištěnce
+                // The cycle for creating a miracle of the insured
                 for (let i = data; i < maxValues; i++) {
                     createUserBox(i, gridA, gridB);
                     gridA++;
@@ -217,32 +214,33 @@ export class InsurancePersonBox extends InsuredPersonBox{
                 }
             }
 
+            // We call the insertDataToFunction function
             insertDataToFunction();
 
             let informationBox = document.createElement('div');
 
-            //Pokud se do stránky propíše aspoň jeden pojištěnec z databáze vytvoří se šipky pro stránkování
+            // If at least one insured person from the database is entered into the page, arrows for paging will be created
             if (informationBox) {
                 createControlButtons();
             }
 
-            // Zachycení kliknutí na tlačítka pro strankování
+            // Capture clicks on paging buttons
             let buttonRight = document.querySelector('.control-right');
             let buttonLeft = document.querySelector('.control-left');
 
-            //Zachycení kliknutí na tlačítko doprava
+            // Capturing the right button click
             if(buttonRight){
                 buttonRight.addEventListener('click', () =>{
                     let box = document.querySelectorAll('.information-box');
-                    // Vymažeme stávající data na stránce
+                    // We will delete the existing data on the page
                     for(let oneBoxe of box){
                         oneBoxe.remove();
                     }
 
-                    //Zvýšíme hodnotu aktuální stránky o jednu
+                    // We increase the value of the current page by one
                     actuallyPageNumber ++;
 
-                    // Zavoláme funkci pro vypsání dalších dat z databáze
+                    // We will call a function to list additional data from the database
                     data += 5
                     gridA = 4;
                     gridB = 5;
@@ -251,18 +249,18 @@ export class InsurancePersonBox extends InsuredPersonBox{
                 })
             }
 
-            //Zachycení kliknutí na tlačítko doleva
+            // Capturing the left button click
             if(buttonLeft){
                 buttonLeft.addEventListener('click', () =>{
                     let box = document.querySelectorAll('.information-box');
-                    // Vymažeme stávající data na stránce
+                    // We will delete the existing data on the page
                     for(let oneBoxe of box){
                         oneBoxe.remove();
                     }
-                    //Snížíme hodnotu aktuální stránky o jednu
+                    // We will decrement the value of the current page by one
                     actuallyPageNumber --;
 
-                    // Zavoláme funkci pro vypsání dalších dat z databáze
+                    // We will call a function to list additional data from the database
                     data -= 5
                     gridA = 4;
                     gridB = 5;
@@ -277,8 +275,8 @@ export class InsurancePersonBox extends InsuredPersonBox{
     }
 
     /**
-     * Funkce pro vložení titulku do section
-     * @param {string} title 
+     * A method for inserting a title into a section
+     * @param {string} title Title in section
      */
     insertData(title) {
         let section = document.querySelector('.section');
