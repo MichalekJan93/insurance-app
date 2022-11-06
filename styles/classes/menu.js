@@ -1,3 +1,6 @@
+/**
+ * A class that modifies the menu in the header
+ */
 export class Menu{
 
     constructor(){
@@ -5,20 +8,20 @@ export class Menu{
         this.menuIcon = document.querySelector('.hamburger-menu');
     }
 
-    /* Odstraní třídu menu-active s neaktivních položek v headr menu */
+    // The method removes the menu-active class from the inactive items in the menu headr
     resetActiveMenu(){
         this.menu.forEach(element => {
             element.classList.remove('menu-activate');
         })
     }
-    /* Vytvoří třidu menu-active po kliknutí na položku v headr menu*/
+    // Creates a menu-active class when an item in the header menu is clicked
     activeMenu(){
         this.menu.forEach(element => {
             element.addEventListener('click', () =>{
                 this.resetActiveMenu();
                 element.classList.add('menu-activate');
-                /* Srolovani menu po kliknuti na polozku v menu */
-                /* Pokud bude velikost headeru mensi nez 960, tak scrollujeme menu */
+                // Scrolling the menu after clicking on an item in the menu
+                // If the size of the header is smaller than 960, we scroll the menu
                 if(document.querySelector('header').clientWidth < 960){
                     let menuHeader = document.querySelector('.menu-header')
                     menuHeader.className = 'menu-header';
@@ -27,10 +30,10 @@ export class Menu{
         })
     }
 
-    /* Ovladani responsivního headr menu */
+    // Responsive header menu control
     showResponsiveMenu(){
         let menuHeader = document.querySelector('.menu-header');
-        /* Pokud bude velikost headeru mensi nez 960, tak scrollujeme menu */
+        // If the size of the header is smaller than 960, we scroll the menu
         if(document.querySelector('header').clientWidth < 960){
             if(menuHeader.className === 'menu-header'){
                 menuHeader.className += ' show';

@@ -248,7 +248,7 @@ section{
 section.Home{
     display: block;
     height: auto;
-    min-height: 650px;
+    min-height: 700px;
 
 }
 
@@ -468,6 +468,12 @@ section .addButton::before, dialog .addButton-dialog::before, section .addButton
     padding-right: 1rem;
 }
 
+.section.Pojištěnci .information-box .information-btns{
+    gap: none;
+    justify-content: space-between;
+    padding-right: 5px;
+}
+
 .information-box .btn-information, .information-box .btn-information-dialog, .information-box-dialog .btn-information-dialog{
     width: 23px;
     height: 23px;
@@ -601,7 +607,7 @@ section .addButton::before, dialog .addButton-dialog::before, section .addButton
     justify-content: end;
     position: absolute;
     right: 0px;
-    bottom: 45px;
+    bottom: 28px;
 }
 
 .control-dialog, section.Home .control-dialog{
@@ -991,7 +997,7 @@ dialog .login{
 dialog .login .login-img{
     height: 200px;
     width: 100%;
-    background-image: url('../img/login.jpg');
+    background-image: url('../img/login-mob.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 350px;
@@ -1035,7 +1041,7 @@ dialog .login-form .register-password-info{
 dialog .login .register-img{
     height: 200px;
     width: 100%;
-    background-image: url('../img/register.jpg');
+    background-image: url('../img/register-mob.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 350px;
@@ -1389,19 +1395,19 @@ section .insurance-boxes .insurance-boxes-box h3{
 }
 
 section .insurance-boxes .insurance-boxes-box:nth-child(1){
-    background-image: url('../img/insurance-vehicel.jpg');
+    background-image: url('../img/insurance-vehicel-mob.jpg');
 }
 
 section .insurance-boxes .insurance-boxes-box:nth-child(2){
-    background-image: url('../img/insurance-travel.jpg');
+    background-image: url('../img/insurance-travel-mob.jpg');
 }
 
 section .insurance-boxes .insurance-boxes-box:nth-child(3){
-    background-image: url('../img/insurance-property.jpg');
+    background-image: url('../img/insurance-property-mob.jpg');
 }
 
 section .insurance-boxes .insurance-boxes-box:nth-child(4){
-    background-image: url('../img/insurance-business.jpg');
+    background-image: url('../img/insurance-business-mob.jpg');
 }
 
 section .insurance-boxes .insurance-boxes-box:hover{
@@ -1434,7 +1440,7 @@ section .insurance-boxes .insurance-boxes-box:hover{
 }
 
 section.Home .info-box{
-    top: 38rem;
+    top: 41rem;
 }
 
 .info-box p{
@@ -1473,7 +1479,7 @@ section.Home .info-box{
   }
   
   .single-chart {
-    width: 48%;
+    width: 47%;
     justify-content: space-around ;
     position: relative;
     padding: 0.5rem 0;
@@ -1542,6 +1548,16 @@ section.Home .info-box{
 @media only screen and (min-width: 40em){
     section .main-box .main-box-img{
         background-position-y: -100px;
+    }
+
+    .section.Pojištěnci .information-box .information-btns{
+        gap: 1rem;
+        justify-content: right;
+        padding-right: 1rem;
+    }
+
+    .control, .control-dialog, section.Home .control-dialog{
+        bottom: 45px;
     }
 }
 
@@ -1653,7 +1669,23 @@ section.Home .info-box{
     -moz-transition: 300ms ease-in-out;
     -ms-transition: 300ms ease-in-out;
     -o-transition: 300ms ease-in-out;
-}
+    }
+
+    section .insurance-boxes .insurance-boxes-box:nth-child(1){
+        background-image: url('../img/insurance-vehicel.jpg');
+    }
+    
+    section .insurance-boxes .insurance-boxes-box:nth-child(2){
+        background-image: url('../img/insurance-travel.jpg');
+    }
+    
+    section .insurance-boxes .insurance-boxes-box:nth-child(3){
+        background-image: url('../img/insurance-property.jpg');
+    }
+    
+    section .insurance-boxes .insurance-boxes-box:nth-child(4){
+        background-image: url('../img/insurance-business.jpg');
+    }
 
     header{
         display: flex;
@@ -1800,7 +1832,6 @@ section.Home .info-box{
 
     dialog{
         max-width: 1400px;
-        height: 90vh;
     }
 
     dialog .dialog-user.dialog, dialog .dialog-insurance.dialog{
@@ -1869,10 +1900,12 @@ section.Home .info-box{
         flex-direction: row;
         align-items: center;
         height: 90vh;
+        max-height: 680px;
     }
 
     dialog .login .login-img{
         width: 100%;
+        background-image: url('../img/login.jpg');
         background-size: 100%;
         height: 100%;
         flex: 50%;
@@ -1917,6 +1950,7 @@ section.Home .info-box{
 
     dialog .login .register-img{
         width: 100%;
+        background-image: url('../img/register.jpg');
         background-size: 100%;
         height: 100%;
         flex: 50%;
@@ -1956,15 +1990,7 @@ section.Home .info-box{
         z-index: 9999 !important;
     }
 
-    section.Home{
-        min-height: 680px;
-    }
-
     .info-box{
-        top: 40rem;
-    }
-
-    section.Home .info-box{
         top: 40rem;
     }
 
