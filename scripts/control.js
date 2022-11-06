@@ -760,3 +760,10 @@ observer.observe(elem, {
 window.addEventListener('resize',function(){
     newBox.widthForBox();
 });
+
+/* Consol log message */
+let consoleMessage = 'background-color:black; border:2px solid green; font-size:18px; font-weight: bold;padding:3px 5px;color:';
+console.log('.%cAPP CREATED BY: Jan Michálek', 
+             consoleMessage+'green');
+console.log('.%cCAN YOU CONTACT ME:' + '%cjanmichalek213@gmail.com', 
+consoleMessage+'green', consoleMessage+'white');
