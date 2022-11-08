@@ -9,6 +9,13 @@ This application was created as a project for the final exam for the web applica
 My goal was to create a so-called one page application using JavaScript.
 
 ### Launch
+Before starting the application, import the SQL database.
+.
+├── ...
+├── SQL-dtb                 # SQL folder
+│   └── insured_persons.sql # SQL databese
+└── ...
+
 #### Login insurer
 name: novak@app.cz
 password: 123123
