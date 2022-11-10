@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 08, 2022 at 09:31 PM
--- Server version: 8.0.26
--- PHP Version: 7.4.33
+-- Počítač: 127.0.0.1
+-- Vytvořeno: Čtv 10. lis 2022, 07:18
+-- Verze serveru: 8.0.26
+-- Verze PHP: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `insurance_app`
+-- Databáze: `insurance_app`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `insurance`
+-- Struktura tabulky `insurance`
 --
 
 CREATE TABLE `insurance` (
@@ -39,7 +39,7 @@ CREATE TABLE `insurance` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
 
 --
--- Dumping data for table `insurance`
+-- Vypisuji data pro tabulku `insurance`
 --
 
 INSERT INTO `insurance` (`id`, `type`, `amount`, `subject`, `validFrom`, `validUntil`, `insuredPersonID`, `insurerID`) VALUES
@@ -59,7 +59,7 @@ INSERT INTO `insurance` (`id`, `type`, `amount`, `subject`, `validFrom`, `validU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `insured_persons`
+-- Struktura tabulky `insured_persons`
 --
 
 CREATE TABLE `insured_persons` (
@@ -77,7 +77,7 @@ CREATE TABLE `insured_persons` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
 
 --
--- Dumping data for table `insured_persons`
+-- Vypisuji data pro tabulku `insured_persons`
 --
 
 INSERT INTO `insured_persons` (`id`, `dateRegistration`, `firstName`, `lastName`, `birthdate`, `city`, `address`, `NIP`, `phone`, `email`, `insurerID`) VALUES
@@ -93,7 +93,7 @@ INSERT INTO `insured_persons` (`id`, `dateRegistration`, `firstName`, `lastName`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `insurers`
+-- Struktura tabulky `insurers`
 --
 
 CREATE TABLE `insurers` (
@@ -105,7 +105,7 @@ CREATE TABLE `insurers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
 
 --
--- Dumping data for table `insurers`
+-- Vypisuji data pro tabulku `insurers`
 --
 
 INSERT INTO `insurers` (`id`, `firstName`, `lastName`, `email`, `password`) VALUES
@@ -114,7 +114,7 @@ INSERT INTO `insurers` (`id`, `firstName`, `lastName`, `email`, `password`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktura tabulky `users`
 --
 
 CREATE TABLE `users` (
@@ -127,7 +127,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
 
 --
--- Dumping data for table `users`
+-- Vypisuji data pro tabulku `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `role`, `insurer`, `person`) VALUES
@@ -135,30 +135,30 @@ INSERT INTO `users` (`id`, `email`, `password`, `role`, `insurer`, `person`) VAL
 (4, 'modry@seznam.cz', '$2y$10$pcMZZRTsS0oVSxX0FG8BX.nz7mNLLotmejJR.sJWVXYOiYjjL6lvO', 2, NULL, 8);
 
 --
--- Indexes for dumped tables
+-- Indexy pro exportované tabulky
 --
 
 --
--- Indexes for table `insurance`
+-- Indexy pro tabulku `insurance`
 --
 ALTER TABLE `insurance`
   ADD PRIMARY KEY (`id`),
   ADD KEY `insuredPersonID` (`insuredPersonID`);
 
 --
--- Indexes for table `insured_persons`
+-- Indexy pro tabulku `insured_persons`
 --
 ALTER TABLE `insured_persons`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `insurers`
+-- Indexy pro tabulku `insurers`
 --
 ALTER TABLE `insurers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indexy pro tabulku `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -166,45 +166,45 @@ ALTER TABLE `users`
   ADD KEY `insurer` (`insurer`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pro tabulky
 --
 
 --
--- AUTO_INCREMENT for table `insurance`
+-- AUTO_INCREMENT pro tabulku `insurance`
 --
 ALTER TABLE `insurance`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `insured_persons`
+-- AUTO_INCREMENT pro tabulku `insured_persons`
 --
 ALTER TABLE `insured_persons`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `insurers`
+-- AUTO_INCREMENT pro tabulku `insurers`
 --
 ALTER TABLE `insurers`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT pro tabulku `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- Constraints for dumped tables
+-- Omezení pro exportované tabulky
 --
 
 --
--- Constraints for table `insurance`
+-- Omezení pro tabulku `insurance`
 --
 ALTER TABLE `insurance`
   ADD CONSTRAINT `insurance_ibfk_1` FOREIGN KEY (`insuredPersonID`) REFERENCES `insured_persons` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `users`
+-- Omezení pro tabulku `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`person`) REFERENCES `insured_persons` (`id`) ON DELETE CASCADE,
